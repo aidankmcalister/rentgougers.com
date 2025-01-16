@@ -5,7 +5,6 @@ import { RowData } from "../types/RowData";
 import RowCard from "../components/RowCard";
 import Header from "~/components/Header";
 import Controls from "~/components/Controls";
-import { Divider } from "@nextui-org/react";
 import { useState, useMemo, useEffect } from "react";
 import { Riple } from "react-loading-indicators";
 import { Icon } from "@iconify/react/dist/iconify.js";
@@ -79,8 +78,8 @@ export default function Index() {
     const rows = [...filteredRows];
     if (sortDirectionPercentIncrease) {
       rows.sort((a, b) => {
-        const percentA = parseFloat(a.percentIncrease);
-        const percentB = parseFloat(b.percentIncrease);
+        const percentA = parseFloat(a.percentIncrease) || 0;
+        const percentB = parseFloat(b.percentIncrease) || 0;
         return sortDirectionPercentIncrease === "asc"
           ? percentA - percentB
           : percentB - percentA;

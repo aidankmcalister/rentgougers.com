@@ -13,6 +13,7 @@ import {
 } from "@nextui-org/react";
 
 export default function RowCard({ row }: { row: RowData }) {
+  console.log(row.percentIncrease);
   return (
     <Card>
       <CardBody>
@@ -69,6 +70,7 @@ export default function RowCard({ row }: { row: RowData }) {
               </p>
             </div>
           </div>
+          <Divider />
           <div className="flex flex-col gap-2">
             <Accordion>
               <AccordionItem

@@ -76,7 +76,7 @@ export default function Controls({
       <div className="flex flex-col gap-4 lg:flex-row lg:items-center">
         <Slider
           className="w-full lg:min-w-80 text-gray-400"
-          defaultValue={[0, 500000]}
+          defaultValue={[0, 100000]}
           formatOptions={{
             style: "currency",
             currency: "USD",
@@ -88,7 +88,7 @@ export default function Controls({
               Original Price Range
             </p>
           }
-          maxValue={50000}
+          maxValue={100000}
           minValue={0}
           step={500}
           onChange={(value) =>
@@ -98,7 +98,7 @@ export default function Controls({
         />
         <Slider
           className="w-full lg:min-w-80 text-gray-400"
-          defaultValue={[0, 500000]}
+          defaultValue={[0, 100000]}
           classNames={{
             track: "bg-gray-200 dark:bg-gray-800",
           }}
@@ -113,7 +113,7 @@ export default function Controls({
               Updated Price Range
             </p>
           }
-          maxValue={50000}
+          maxValue={100000}
           minValue={0}
           step={500}
           onChange={(value) =>
@@ -176,6 +176,9 @@ export default function Controls({
           onPress={() => {
             setSortDirectionPercentIncrease(null);
             setSortDirectionUpdatedPrice(null);
+            setSearch("");
+            setRentalPriceRange([0, 100000]);
+            setUpdatedRentalPriceRange([0, 100000]);
           }}
           aria-label="reset-sorting"
           className="h-full min-h-12 w-1/2">
