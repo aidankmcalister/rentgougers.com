@@ -23,6 +23,7 @@ export default function RowCard({ row }: { row: RowData }) {
                 {row.address}
               </h2>
               <Chip
+                variant="shadow"
                 color={Number(row.percentIncrease) > 15 ? "danger" : "warning"}
                 startContent={<Icon icon="mdi:arrow-up" />}>
                 <div className="flex items-center">
@@ -127,21 +128,23 @@ export default function RowCard({ row }: { row: RowData }) {
               </div>
               <div className="flex gap-2 w-full">
                 <Button
+                  color="primary"
                   as={Link}
                   to={row.listingUrl}
                   target="_blank"
                   rel="noreferrer"
                   startContent={<Icon width={20} height={20} icon="mdi:link" />}
-                  className="inline-flex w-full justify-center items-center px-3 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                  className="inline-flex w-full justify-center items-center px-3 py-2 text-sm font-medium">
                   {row.listingSite}
                 </Button>
                 <Button
+                  color="primary"
                   as={Link}
                   to={row.googleMapLink}
                   target="_blank"
                   rel="noreferrer"
                   startContent={<Icon width={20} height={20} icon="mdi:map" />}
-                  className="inline-flex w-full justify-center items-center px-3 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                  className="inline-flex w-full justify-center items-center px-3 py-2 text-sm font-medium">
                   Google Maps
                 </Button>
               </div>
