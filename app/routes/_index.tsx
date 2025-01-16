@@ -90,11 +90,8 @@ export default function Index() {
       <div className="mx-4 space-y-4">
         <div className="w-full flex items-center">
           <Controls
-            search={search}
             setSearch={setSearch}
-            rentalPriceRange={rentalPriceRange}
             setRentalPriceRange={setRentalPriceRange}
-            updatedRentalPriceRange={updatedRentalPriceRange}
             setUpdatedRentalPriceRange={setUpdatedRentalPriceRange}
             sortDirectionPercentIncrease={sortDirectionPercentIncrease}
             setSortDirectionPercentIncrease={setSortDirectionPercentIncrease}

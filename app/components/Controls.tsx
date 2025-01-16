@@ -1,12 +1,11 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { Button, Card, cn, Input, Slider } from "@nextui-org/react";
+import { useCallback } from "react";
+import { useDebouncedCallback } from "use-debounce";
 
 type ControlsProps = {
-  search: string;
   setSearch: (search: string) => void;
-  rentalPriceRange: [number, number];
   setRentalPriceRange: (priceRange: [number, number]) => void;
-  updatedRentalPriceRange: [number, number];
   setUpdatedRentalPriceRange: (priceRange: [number, number]) => void;
   sortDirectionPercentIncrease: "asc" | "desc" | null;
   setSortDirectionPercentIncrease: (direction: "asc" | "desc" | null) => void;
@@ -15,24 +14,62 @@ type ControlsProps = {
 };
 
 export default function Controls({
-  search,
   setSearch,
-  rentalPriceRange,
   setRentalPriceRange,
-  updatedRentalPriceRange,
   setUpdatedRentalPriceRange,
   sortDirectionPercentIncrease,
   setSortDirectionPercentIncrease,
   sortDirectionUpdatedPrice,
   setSortDirectionUpdatedPrice,
 }: ControlsProps) {
+  const debouncedSetSearch = useDebouncedCallback((value: string) => {
+    console.log("Debounced search input changed:", value);
+    setSearch(value);
+  }, 500);
+
+  const debouncedSetRentalPriceRange = useDebouncedCallback(
+    (value: [number, number]) => {
+      console.log("Debounced rental price range changed:", value);
+      setRentalPriceRange(value);
+    },
+    500
+  );
+
+  const debouncedSetUpdatedRentalPriceRange = useDebouncedCallback(
+    (value: [number, number]) => {
+      console.log("Debounced updated rental price range changed:", value);
+      setUpdatedRentalPriceRange(value);
+    },
+    500
+  );
+
+  const handleSearchChange = useCallback(
+    (value: string) => {
+      debouncedSetSearch(value);
+    },
+    [debouncedSetSearch]
+  );
+
+  const handleRentalPriceChange = useCallback(
+    (value: [number, number]) => {
+      debouncedSetRentalPriceRange(value);
+    },
+    [debouncedSetRentalPriceRange]
+  );
+
+  const handleUpdatedRentalPriceChange = useCallback(
+    (value: [number, number]) => {
+      debouncedSetUpdatedRentalPriceRange(value);
+    },
+    [debouncedSetUpdatedRentalPriceRange]
+  );
+
   return (
     <Card className="h-full w-full p-5 flex flex-col xl:flex-row gap-4">
       <Input
         label="Search"
-        value={search}
         placeholder="123 Billionaire Boulevard, Atlantis, CA"
-        onChange={(e) => setSearch(e.target.value)}
+        onChange={(e) => handleSearchChange(e.target.value)}
         classNames={{
           input: ["placeholder:italic placeholder:font-thin"],
         }}
@@ -51,9 +88,10 @@ export default function Controls({
           }
           maxValue={50000}
           minValue={0}
-          step={100}
-          value={rentalPriceRange}
-          onChange={(value) => setRentalPriceRange(value as [number, number])}
+          step={500}
+          onChange={(value) =>
+            handleRentalPriceChange(value as [number, number])
+          }
           aria-label="original-price-range"
         />
         <Slider
@@ -67,10 +105,9 @@ export default function Controls({
           }
           maxValue={50000}
           minValue={0}
-          step={100}
-          value={updatedRentalPriceRange}
+          step={500}
           onChange={(value) =>
-            setUpdatedRentalPriceRange(value as [number, number])
+            handleUpdatedRentalPriceChange(value as [number, number])
           }
           aria-label="updated-price-range"
         />
@@ -78,10 +115,10 @@ export default function Controls({
       <div className="flex gap-2">
         <Button
           onPress={() => {
-            setSortDirectionPercentIncrease((prev) =>
-              prev === "asc" ? "desc" : "asc"
+            setSortDirectionPercentIncrease(
+              sortDirectionPercentIncrease === "asc" ? "desc" : "asc"
             );
-            setSortDirectionUpdatedPrice(null); // Reset other sort
+            setSortDirectionUpdatedPrice(null);
           }}
           aria-label="sort-by-percent-increase"
           className={cn(
@@ -101,10 +138,10 @@ export default function Controls({
         </Button>
         <Button
           onPress={() => {
-            setSortDirectionUpdatedPrice((prev) =>
-              prev === "asc" ? "desc" : "asc"
+            setSortDirectionUpdatedPrice(
+              sortDirectionUpdatedPrice === "asc" ? "desc" : "asc"
             );
-            setSortDirectionPercentIncrease(null); // Reset other sort
+            setSortDirectionPercentIncrease(null);
           }}
           aria-label="sort-by-updated-price"
           className={cn(
