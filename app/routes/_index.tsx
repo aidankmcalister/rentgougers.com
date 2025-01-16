@@ -53,7 +53,7 @@ export default function Index() {
           />
         </div>
         <Divider />
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {filteredRows.map((row) => (
             <RowCard key={row.id} row={row} />
           ))}

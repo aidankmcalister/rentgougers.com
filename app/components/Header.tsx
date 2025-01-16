@@ -6,7 +6,7 @@ export default function Header() {
     <div className="flex items-center justify-between p-5">
       <div>
         <h1 className="text-3xl font-bold">RentGouging.com</h1>
-        <p className="text-sm text-gray-500">
+        <p className="text-xs md:text-sm text-gray-500">
           Data from:{" "}
           <Link
             to="https://docs.google.com/spreadsheets/d/1RXWxLqTyWvAuq8A0PgaBuWeEn_G6qTLyTZ8lzfNEaNw/edit?gid=314416722#gid=314416722"
