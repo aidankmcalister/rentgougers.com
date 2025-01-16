@@ -1,5 +1,5 @@
 import type { MetaFunction } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
+import { json, useLoaderData } from "@remix-run/react";
 import { fetchSubmissionsData } from "api";
 import { RowData } from "../types/RowData";
 import RowCard from "../components/RowCard";
@@ -18,7 +18,7 @@ export const meta: MetaFunction = () => {
 export const loader = async () => {
   try {
     const data = await fetchSubmissionsData();
-    return Response.json(data);
+    return json(data);
   } catch (error) {
     console.error("Error loading submissions data:", error);
     throw new Response("Error loading data", { status: 500 });
