@@ -22,7 +22,6 @@ export default function RowCard({ row }: { row: RowData }) {
               <h2 className="text-xl font-semibold text-gray-800 dark:text-gray-100">
                 {row.address}
               </h2>
-              {row.id}
               <Chip
                 className="flex items-center"
                 color="danger"
