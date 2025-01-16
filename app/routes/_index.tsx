@@ -42,7 +42,7 @@ export default function Index() {
   const [loading, setLoading] = useState<boolean>(true);
 
   const data = useLoaderData<RowData[]>();
-  console.log(data);
+
   useEffect(() => {
     setLoading(true);
     const fetchData = async () => {
@@ -95,9 +95,9 @@ export default function Index() {
     return rows;
   }, [filteredRows, sortDirectionPercentIncrease, sortDirectionUpdatedPrice]);
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen flex flex-col">
       <Header />
-      <div className="mx-4 space-y-4">
+      <div className="mx-4 space-y-4 flex-grow flex flex-col">
         <div className="w-full flex items-center">
           <Controls
             setSearch={setSearch}
@@ -110,17 +110,17 @@ export default function Index() {
           />
         </div>
         <Divider />
-        {loading ? (
-          <div className="flex justify-center items-center h-full">
+        <div className="flex-grow flex justify-center items-center">
+          {loading ? (
             <Riple color="#006FEE" size="medium" text="" textColor="" />
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {sortedRows.map((row) => (
-              <RowCard key={row.id} row={row} />
-            ))}
-          </div>
-        )}
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {sortedRows.map((row) => (
+                <RowCard key={row.id} row={row} />
+              ))}
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
