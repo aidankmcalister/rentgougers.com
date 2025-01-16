@@ -13,6 +13,7 @@
   "dependencies": {
     "@fontsource/poppins": "^5.1.1",
     "@nextui-org/react": "^2.6.11",
+    "@number-flow/react": "^0.5.5",
     "@remix-run/node": "^2.15.2",
     "@remix-run/react": "^2.15.2",
     "@remix-run/serve": "^2.15.2",

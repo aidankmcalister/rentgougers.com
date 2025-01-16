@@ -8,6 +8,8 @@ import Controls from "~/components/Controls";
 import { Divider } from "@nextui-org/react";
 import { useState, useMemo, useEffect } from "react";
 import { Riple } from "react-loading-indicators";
+import { Icon } from "@iconify/react/dist/iconify.js";
+import NumberFlow from "@number-flow/react";
 
 export const meta: MetaFunction = () => {
   return [
@@ -115,11 +117,22 @@ export default function Index() {
             <Riple color="#006FEE" size="medium" text="" textColor="" />
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {sortedRows.map((row) => (
-              <RowCard key={row.id} row={row} />
-            ))}
-          </div>
+          <>
+            <h3 className="text-xl font-bold flex items-center gap-2">
+              <Icon icon="mdi:magnify" />
+              <NumberFlow
+                value={sortedRows.length}
+                format="compact"
+                color="blue"
+              />{" "}
+              total results
+            </h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {sortedRows.map((row) => (
+                <RowCard key={row.id} row={row} />
+              ))}
+            </div>
+          </>
         )}
       </div>
     </div>

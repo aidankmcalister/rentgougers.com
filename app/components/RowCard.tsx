@@ -22,7 +22,9 @@ export default function RowCard({ row }: { row: RowData }) {
               <h2 className="text-xl font-semibold text-gray-800 dark:text-gray-100">
                 {row.address}
               </h2>
-              <Chip color="danger" startContent={<Icon icon="mdi:arrow-up" />}>
+              <Chip
+                color={Number(row.percentIncrease) > 15 ? "danger" : "warning"}
+                startContent={<Icon icon="mdi:arrow-up" />}>
                 <div className="flex items-center">
                   <Icon width={16} height={16} icon="mdi:percent" />
                   {row.percentIncrease}
@@ -67,18 +69,21 @@ export default function RowCard({ row }: { row: RowData }) {
             </div>
           </div>
           <div className="flex flex-col gap-2">
-            <Accordion>
+            <Accordion
+              itemClasses={{
+                base: "py-0 mx-0",
+                content: "px-2 my-2 text-sm",
+              }}>
               <AccordionItem
                 key="additional-info"
                 aria-label="Additional Info"
+                startContent={<Icon width={20} height={20} icon="mdi:info" />}
                 title="Additional Info">
-                <p className="text-sm text-gray-600 dark:text-gray-300 mt-2">
+                <p className="text-gray-600 dark:text-gray-400">
                   {row.additionalInfo.length > 0 ? (
                     row.additionalInfo
                   ) : (
-                    <span className="text-sm text-gray-600 dark:text-gray-300">
-                      No additional info found
-                    </span>
+                    <span>No additional info found</span>
                   )}
                 </p>
               </AccordionItem>
@@ -86,8 +91,9 @@ export default function RowCard({ row }: { row: RowData }) {
               <AccordionItem
                 key="source-grabs"
                 aria-label="Source Grabs"
+                startContent={<Icon width={20} height={20} icon="mdi:link" />}
                 title="Source Grabs">
-                <ul>
+                <ul className="text-gray-600 dark:text-gray-400">
                   {row.sourceGrabs.length > 0 ? (
                     row.sourceGrabs.map((source) => (
                       <li key={source}>
