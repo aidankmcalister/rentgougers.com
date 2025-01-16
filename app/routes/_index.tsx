@@ -96,18 +96,21 @@ export default function Index() {
   }, [filteredRows, sortDirectionPercentIncrease, sortDirectionUpdatedPrice]);
   return (
     <div>
-      <p className="text-xs text-gray-500 mx-4 mt-4">
-        This visualization is based on data from a community-created Google
-        Sheet:{" "}
-        <a
-          href="https://docs.google.com/spreadsheets/d/1RXWxLqTyWvAuq8A0PgaBuWeEn_G6qTLyTZ8lzfNEaNw/edit?gid=314416722#gid=314416722"
-          className="text-blue-500 underline hover:text-blue-600"
-          target="_blank"
-          rel="noopener noreferrer">
-          Tracking Rental Price Gouging in LA
-        </a>
-        . This site is not affiliated with the Google Sheet or its creators.
-      </p>
+      <div className="flex flex-row gap-2 m-4 items-center  text-gray-500">
+        <Icon icon="mdi:alert-circle" className="w-4 h-4" />
+        <p className="text-xs">
+          This visualization is based on data from a community-created Google
+          Sheet:{" "}
+          <a
+            href="https://docs.google.com/spreadsheets/d/1RXWxLqTyWvAuq8A0PgaBuWeEn_G6qTLyTZ8lzfNEaNw/edit?gid=314416722#gid=314416722"
+            className="text-blue-500 underline hover:text-blue-600"
+            target="_blank"
+            rel="noopener noreferrer">
+            Tracking Rental Price Gouging in LA
+          </a>
+          . This site is not affiliated with the Google Sheet or its creators.
+        </p>
+      </div>
       <div className="m-4 space-y-4">
         <div className="w-full flex items-center">
           <Controls
