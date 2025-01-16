@@ -60,7 +60,7 @@ export default function RowCard({ row }: { row: RowData }) {
                 Price Gouged on{" "}
                 {isNaN(new Date(row.date).getTime())
                   ? "Invalid date"
-                  : format(new Date(row.date), "PPpp")}
+                  : format(new Date(row.date), "PP")}
               </p>
             </div>
           </div>
