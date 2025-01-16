@@ -3,7 +3,6 @@ import { json, useLoaderData } from "@remix-run/react";
 import { fetchSubmissionsData } from "api";
 import { RowData } from "../types/RowData";
 import RowCard from "../components/RowCard";
-import Header from "~/components/Header";
 import Controls from "~/components/Controls";
 import { useState, useMemo, useEffect } from "react";
 import { Riple } from "react-loading-indicators";
@@ -96,8 +95,19 @@ export default function Index() {
     return rows;
   }, [filteredRows, sortDirectionPercentIncrease, sortDirectionUpdatedPrice]);
   return (
-    <div className="min-h-screen">
-      <Header />
+    <div>
+      <p className="text-xs text-gray-500 mx-4 mt-4">
+        Disclaimer: This visualization is based on data from a community-created
+        Google Sheet:{" "}
+        <a
+          href="https://docs.google.com/spreadsheets/d/1RXWxLqTyWvAuq8A0PgaBuWeEn_G6qTLyTZ8lzfNEaNw/edit?gid=314416722#gid=314416722"
+          className="text-blue-500 underline hover:text-blue-600"
+          target="_blank"
+          rel="noopener noreferrer">
+          Tracking Rental Price Gouging in LA
+        </a>
+        . This site is not affiliated with the Google Sheet or its creators.
+      </p>
       <div className="m-4 space-y-4">
         <div className="w-full flex items-center">
           <Controls

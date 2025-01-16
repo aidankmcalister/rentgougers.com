@@ -47,15 +47,9 @@ export const fetchSubmissionsData = async () => {
       priceIncreaseDate: row[8],
       listingSite: row[9],
       listingUrl: row[10],
-      // rentalListingAgent: row[11],
-      // propertyOwner: row[12],
       additionalInfo: row[13],
       sourceGrabs: row[14] ? row[14].split(",").map((s) => s.trim()) : [],
       parcelId: row[15],
-      // listingAgentPhone: row[16],
-      // listingAgentEmail: row[17],
-      // propertyOwnerPhone: row[18],
-      // propertyOwnerEmail: row[19],
       priceOriginalDate: row[20],
       percentIncrease: (
         ((Number(row[7].replace("$", "").replace(",", "")) -
@@ -73,6 +67,7 @@ export const fetchSubmissionsData = async () => {
 
   // removes the first item which was the header row
   jsonData.shift();
+
   // 6) Return the JSON data
   return jsonData;
 };

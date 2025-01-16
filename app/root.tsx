@@ -11,6 +11,7 @@ import "./tailwind.css";
 import "@fontsource/poppins/300.css";
 import "@fontsource/poppins/400.css";
 import "@fontsource/poppins/700.css";
+import Header from "./components/Header";
 
 export const links: LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -36,7 +37,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </head>
       <body>
         <NextUIProvider>
-          {children}
+          <div className="min-h-screen">
+            <Header />
+            {children}
+          </div>
           <ScrollRestoration />
           <Scripts />
         </NextUIProvider>

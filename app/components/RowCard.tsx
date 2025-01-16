@@ -13,7 +13,6 @@ import {
 } from "@nextui-org/react";
 
 export default function RowCard({ row }: { row: RowData }) {
-  console.log(row.percentIncrease);
   return (
     <Card>
       <CardBody>
