@@ -42,7 +42,7 @@ export default function Index() {
   const [loading, setLoading] = useState<boolean>(true);
 
   const data = useLoaderData<RowData[]>();
-
+  console.log(data);
   useEffect(() => {
     setLoading(true);
     const fetchData = async () => {
@@ -94,7 +94,6 @@ export default function Index() {
     }
     return rows;
   }, [filteredRows, sortDirectionPercentIncrease, sortDirectionUpdatedPrice]);
-
   return (
     <div className="min-h-screen">
       <Header />

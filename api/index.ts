@@ -3,7 +3,7 @@ import { RowData } from "../app/types/RowData";
 
 // Replace this with the URL that specifically shows the "All Submissions" tab
 const SHEET_URL =
-  "https://docs.google.com/spreadsheets/d/1RXWxLqTyWvAuq8A0PgaBuWeEn_G6qTLyTZ8lzfNEaNw/edit?gid=314416722";
+  "https://docs.google.com/spreadsheets/d/1RXWxLqTyWvAuq8A0PgaBuWeEn_G6qTLyTZ8lzfNEaNw/edit?gid=314416722#gid=314416722";
 
 // Export the function to fetch and process the data
 export const fetchSubmissionsData = async () => {
@@ -29,7 +29,7 @@ export const fetchSubmissionsData = async () => {
     tableRows.push(rowData);
   });
 
-  const filteredRows = tableRows.filter((row) => row.length === 21);
+  const filteredRows = tableRows.filter((row) => row.length > 5);
   // 4) Assume the first row is headers (adjust the index if your headers are lower)
   const [headers, ...rows] = filteredRows;
   // 5) Convert each subsequent row to an object keyed by the headers
