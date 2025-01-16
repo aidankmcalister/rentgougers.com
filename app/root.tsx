@@ -7,9 +7,7 @@ import {
 } from "@remix-run/react";
 import type { LinksFunction } from "@remix-run/node";
 import { NextUIProvider } from "@nextui-org/react";
-
 import "./tailwind.css";
-import DarkModeToggle from "./components/DarkModeToggle";
 
 export const links: LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -35,7 +33,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </head>
       <body>
         <NextUIProvider>
-          <DarkModeToggle />
           {children}
           <ScrollRestoration />
           <Scripts />

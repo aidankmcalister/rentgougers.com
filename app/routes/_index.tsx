@@ -3,7 +3,10 @@ import { useLoaderData } from "@remix-run/react";
 import { fetchSubmissionsData } from "api";
 import { RowData } from "../types/RowData";
 import RowCard from "../components/RowCard";
-import { Button } from "@nextui-org/react";
+import Header from "~/components/Header";
+import Controls from "~/components/Controls";
+import { Divider } from "@nextui-org/react";
+import { useEffect, useState, useMemo } from "react";
 
 export const meta: MetaFunction = () => {
   return [
@@ -22,16 +25,39 @@ export const loader = async () => {
   }
 };
 export default function Index() {
+  const [filters, setFilters] = useState<string[]>([]);
+  const [search, setSearch] = useState<string>("");
+
   const data = useLoaderData<RowData[]>();
 
+  const filteredRows = useMemo(() => {
+    return data.filter((row) =>
+      Object.values(row).some(
+        (value) =>
+          typeof value === "string" &&
+          value.toLowerCase().includes(search.toLowerCase())
+      )
+    );
+  }, [data, search]);
+
   return (
-    <div className="flex flex-col gap-4 items-center justify-center">
-      <h1 className="text-3xl font-bold text-center my-10">RentGouging.com</h1>
-      <Button>Click me</Button>
-      <div className="grid grid-cols-3 gap-4">
-        {data.map((row) => (
-          <RowCard key={row.id} row={row} />
-        ))}
+    <div className="min-h-screen">
+      <Header />
+      <div className="mx-4 space-y-4">
+        <div className="w-full flex items-center">
+          <Controls
+            filters={filters}
+            setFilters={setFilters}
+            search={search}
+            setSearch={setSearch}
+          />
+        </div>
+        <Divider />
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+          {filteredRows.map((row) => (
+            <RowCard key={row.id} row={row} />
+          ))}
+        </div>
       </div>
     </div>
   );
