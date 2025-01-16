@@ -14,7 +14,7 @@ import {
 
 export default function RowCard({ row }: { row: RowData }) {
   return (
-    <Card isHoverable>
+    <Card>
       <CardBody>
         <div className="p-2 md:p-5 justify-between flex flex-col space-y-4 h-full">
           <div className="space-y-4">
