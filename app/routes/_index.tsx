@@ -97,8 +97,8 @@ export default function Index() {
   return (
     <div>
       <p className="text-xs text-gray-500 mx-4 mt-4">
-        Disclaimer: This visualization is based on data from a community-created
-        Google Sheet:{" "}
+        This visualization is based on data from a community-created Google
+        Sheet:{" "}
         <a
           href="https://docs.google.com/spreadsheets/d/1RXWxLqTyWvAuq8A0PgaBuWeEn_G6qTLyTZ8lzfNEaNw/edit?gid=314416722#gid=314416722"
           className="text-blue-500 underline hover:text-blue-600"
