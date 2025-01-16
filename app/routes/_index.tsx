@@ -6,7 +6,7 @@ import RowCard from "../components/RowCard";
 import Header from "~/components/Header";
 import Controls from "~/components/Controls";
 import { Divider } from "@nextui-org/react";
-import { useEffect, useState, useMemo } from "react";
+import { useState, useMemo } from "react";
 
 export const meta: MetaFunction = () => {
   return [
