@@ -9,7 +9,6 @@ export default function Header() {
       <div>
         <h1 className="text-2xl md:text-3xl font-bold">RentGougers.com</h1>
         <p className="text-xs md:text-sm text-gray-500">
-          Data:{" "}
           <Link
             to="https://docs.google.com/spreadsheets/d/1RXWxLqTyWvAuq8A0PgaBuWeEn_G6qTLyTZ8lzfNEaNw/edit?gid=314416722#gid=314416722"
             className="text-blue-500 underline hover:text-blue-600"
