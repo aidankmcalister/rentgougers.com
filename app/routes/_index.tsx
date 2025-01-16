@@ -3,6 +3,7 @@ import { useLoaderData } from "@remix-run/react";
 import { fetchSubmissionsData } from "api";
 import { RowData } from "../types/RowData";
 import RowCard from "../components/RowCard";
+import { Button } from "@nextui-org/react";
 
 export const meta: MetaFunction = () => {
   return [
@@ -22,11 +23,11 @@ export const loader = async () => {
 };
 export default function Index() {
   const data = useLoaderData<RowData[]>();
-  // console.log(data);
 
   return (
     <div className="flex flex-col gap-4 items-center justify-center">
       <h1 className="text-3xl font-bold text-center my-10">RentGouging.com</h1>
+      <Button>Click me</Button>
       <div className="grid grid-cols-3 gap-4">
         {data.map((row) => (
           <RowCard key={row.id} row={row} />
