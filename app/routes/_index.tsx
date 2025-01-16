@@ -7,6 +7,7 @@ import Header from "~/components/Header";
 import Controls from "~/components/Controls";
 import { Divider } from "@nextui-org/react";
 import { useState, useMemo, useEffect } from "react";
+import { Riple } from "react-loading-indicators";
 
 export const meta: MetaFunction = () => {
   return [
@@ -111,8 +112,8 @@ export default function Index() {
         </div>
         <Divider />
         {loading ? (
-          <div className="flex justify-center items-center h-screen">
-            <p>Loading...</p>
+          <div className="flex justify-center items-center h-full">
+            <Riple color="#006FEE" size="medium" text="" textColor="" />
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">

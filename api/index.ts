@@ -3,7 +3,7 @@ import { RowData } from "../app/types/RowData";
 
 // Replace this with the URL that specifically shows the "All Submissions" tab
 const SHEET_URL =
-  "https://docs.google.com/spreadsheets/d/1RXWxLqTyWvAuq8A0PgaBuWeEn_G6qTLyTZ8lzfNEaNw/edit?gid=314416722#gid=314416722";
+  "https://docs.google.com/spreadsheets/d/1RXWxLqTyWvAuq8A0PgaBuWeEn_G6qTLyTZ8lzfNEaNw/edit?gid=314416722";
 
 // Export the function to fetch and process the data
 export const fetchSubmissionsData = async () => {
@@ -29,10 +29,11 @@ export const fetchSubmissionsData = async () => {
     tableRows.push(rowData);
   });
 
+  const filteredRows = tableRows.filter((row) => row.length === 21);
   // 4) Assume the first row is headers (adjust the index if your headers are lower)
-  const [headers, ...rows] = tableRows;
-
+  const [headers, ...rows] = filteredRows;
   // 5) Convert each subsequent row to an object keyed by the headers
+
   const jsonData: RowData[] = rows.map((row, index) => {
     const record: RowData = {
       id: index,
@@ -41,8 +42,8 @@ export const fetchSubmissionsData = async () => {
       city: row[3],
       state: row[4],
       zip: row[5],
-      rentalPrice: row[6].replace(/\.00$/, ""),
-      updatedRentalPrice: row[7].replace(/\.00$/, ""),
+      rentalPrice: row[6] ? row[6].replace(/\.00$/, "") : row[6],
+      updatedRentalPrice: row[7] ? row[7].replace(/\.00$/, "") : row[7],
       priceIncreaseDate: row[8],
       listingSite: row[9],
       listingUrl: row[10],
