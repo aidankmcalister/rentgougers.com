@@ -1,8 +1,8 @@
 import type { MetaFunction } from "@remix-run/node";
 import { json, useLoaderData } from "@remix-run/react";
 import { fetchSubmissionsData } from "api";
-import { RowData } from "../types/RowData";
-import RowCard from "../components/RowCard";
+import { RowData } from "~/types/RowData";
+import RowCard from "~/components/RowCard";
 import Controls from "~/components/Controls";
 import { useState, useMemo, useEffect } from "react";
 import { Riple } from "react-loading-indicators";
