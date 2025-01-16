@@ -22,11 +22,11 @@ export default function RowCard({ row }: { row: RowData }) {
               <h2 className="text-xl font-semibold text-gray-800 dark:text-gray-100">
                 {row.address}
               </h2>
-              <Chip
-                className="flex items-center"
-                color="danger"
-                startContent={<Icon icon="mdi:arrow-up" />}>
-                %{row.percentIncrease}
+              <Chip color="danger" startContent={<Icon icon="mdi:arrow-up" />}>
+                <div className="flex items-center">
+                  <Icon width={16} height={16} icon="mdi:percent" />
+                  {row.percentIncrease}
+                </div>
               </Chip>
             </div>
             <div className="flex items-center text-gray-600 dark:text-gray-300">
