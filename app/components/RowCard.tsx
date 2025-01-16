@@ -71,7 +71,6 @@ export default function RowCard({ row }: { row: RowData }) {
           <div className="flex flex-col gap-2">
             <Accordion
               itemClasses={{
-                base: "py-0 mx-0",
                 content: "px-2 my-2 text-sm",
               }}>
               <AccordionItem
