@@ -115,30 +115,13 @@ export default function RowCard({ row }: { row: RowData }) {
                 <Icon width={20} height={20} className="mr-2" icon="mdi:home" />
                 <p className="text-sm">
                   Property Owner:{" "}
-                  {row.propertyOwner ? (
-                    <>
-                      {row.propertyOwner}
-
-                      {/* TODO: Decide if the number should be shown */}
-                      {row.propertyOwnerPhone !== "N/A" && (
-                        <Tooltip
-                          content={
-                            <p className="text-xs max-w-56 text-center text-gray-500">
-                              Be responsible for your own actions. I am not
-                              responsible for the accuracy of this phone number,
-                              nor what happens with it.
-                            </p>
-                          }
-                          placement="top">
-                          <span className="text-xs text-gray-500 ml-2">
-                            {row.propertyOwnerPhone}
-                          </span>
-                        </Tooltip>
-                      )}
-                    </>
-                  ) : (
-                    "Unknown"
-                  )}
+                  <Link
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-blue-500 underline hover:text-blue-600"
+                    to={row.listingUrl}>
+                    See Google Sheet
+                  </Link>
                 </p>
               </div>
               <Button

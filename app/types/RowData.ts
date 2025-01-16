@@ -10,15 +10,15 @@ export type RowData = {
   priceIncreaseDate: string; // H
   listingSite: string; // I
   listingUrl: string; // J
-  rentalListingAgent: string; // K
-  propertyOwner: string; // L
+  rentalListingAgent?: string; // K
+  propertyOwner?: string; // L
   additionalInfo: string; // M
   sourceGrabs: string[]; // N
   parcelId: string; // O
-  listingAgentPhone: string; // P
-  listingAgentEmail: string; // Q
-  propertyOwnerPhone: string; // R
-  propertyOwnerEmail: string; // S
+  listingAgentPhone?: string; // P
+  listingAgentEmail?: string; // Q
+  propertyOwnerPhone?: string; // R
+  propertyOwnerEmail?: string; // S
   priceOriginalDate: string; // T
   percentIncrease: string;
 };
