@@ -6,7 +6,7 @@ import RowCard from "../components/RowCard";
 import Header from "~/components/Header";
 import Controls from "~/components/Controls";
 import { Divider } from "@nextui-org/react";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 
 export const meta: MetaFunction = () => {
   return [
@@ -38,8 +38,18 @@ export default function Index() {
   const [updatedRentalPriceRange, setUpdatedRentalPriceRange] = useState<
     [number, number]
   >([0, 50000]);
+  const [loading, setLoading] = useState<boolean>(true);
 
   const data = useLoaderData<RowData[]>();
+
+  useEffect(() => {
+    setLoading(true);
+    const fetchData = async () => {
+      await fetchSubmissionsData();
+      setLoading(false);
+    };
+    fetchData();
+  }, []);
 
   const filteredRows = useMemo(() => {
     return data.filter((row) => {
@@ -100,11 +110,17 @@ export default function Index() {
           />
         </div>
         <Divider />
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {sortedRows.map((row) => (
-            <RowCard key={row.id} row={row} />
-          ))}
-        </div>
+        {loading ? (
+          <div className="flex justify-center items-center h-screen">
+            <p>Loading...</p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {sortedRows.map((row) => (
+              <RowCard key={row.id} row={row} />
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
