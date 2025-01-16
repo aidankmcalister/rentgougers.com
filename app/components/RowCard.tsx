@@ -123,15 +123,26 @@ export default function RowCard({ row }: { row: RowData }) {
                   </Link>
                 </p>
               </div>
-              <Button
-                as={Link}
-                to={row.listingUrl}
-                target="_blank"
-                rel="noreferrer"
-                startContent={<Icon width={20} height={20} icon="mdi:link" />}
-                className="inline-flex w-full justify-center items-center px-3 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                View on {row.listingSite}
-              </Button>
+              <div className="flex gap-2 w-full">
+                <Button
+                  as={Link}
+                  to={row.listingUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  startContent={<Icon width={20} height={20} icon="mdi:link" />}
+                  className="inline-flex w-full justify-center items-center px-3 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                  {row.listingSite}
+                </Button>
+                <Button
+                  as={Link}
+                  to={row.googleMapLink}
+                  target="_blank"
+                  rel="noreferrer"
+                  startContent={<Icon width={20} height={20} icon="mdi:map" />}
+                  className="inline-flex w-full justify-center items-center px-3 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                  Google Maps
+                </Button>
+              </div>
             </div>
           </div>
         </div>

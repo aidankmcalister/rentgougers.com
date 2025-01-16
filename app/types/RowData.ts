@@ -22,4 +22,5 @@ export type RowData = {
   priceOriginalDate: string; // T
   percentIncrease: string;
   googleSheetLink: string;
+  googleMapLink: string;
 };

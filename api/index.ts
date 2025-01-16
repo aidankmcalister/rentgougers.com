@@ -66,6 +66,7 @@ export const fetchSubmissionsData = async () => {
       googleSheetLink: `https://docs.google.com/spreadsheets/d/1RXWxLqTyWvAuq8A0PgaBuWeEn_G6qTLyTZ8lzfNEaNw/edit?gid=314416722#gid=314416722&range=A${
         index + 1
       }`,
+      googleMapLink: `https://www.google.com/maps/search/?api=1&query=${row[2]}%20${row[3]}%20${row[4]}%20${row[5]}`,
     };
     return record;
   });

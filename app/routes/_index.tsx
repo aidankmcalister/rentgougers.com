@@ -95,9 +95,9 @@ export default function Index() {
     return rows;
   }, [filteredRows, sortDirectionPercentIncrease, sortDirectionUpdatedPrice]);
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen">
       <Header />
-      <div className="mx-4 space-y-4 flex-grow flex flex-col">
+      <div className="mx-4 space-y-4">
         <div className="w-full flex items-center">
           <Controls
             setSearch={setSearch}
@@ -110,17 +110,17 @@ export default function Index() {
           />
         </div>
         <Divider />
-        <div className="flex-grow flex justify-center items-center">
-          {loading ? (
+        {loading ? (
+          <div className="flex justify-center items-center h-96">
             <Riple color="#006FEE" size="medium" text="" textColor="" />
-          ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {sortedRows.map((row) => (
-                <RowCard key={row.id} row={row} />
-              ))}
-            </div>
-          )}
-        </div>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {sortedRows.map((row) => (
+              <RowCard key={row.id} row={row} />
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
