@@ -5,7 +5,7 @@ export default function Header() {
   return (
     <div className="flex items-center justify-between p-5">
       <div>
-        <h1 className="text-3xl font-bold">RentGouging.com</h1>
+        <h1 className="text-3xl font-bold">RentGougers.com</h1>
         <p className="text-xs md:text-sm text-gray-500">
           Data from:{" "}
           <Link

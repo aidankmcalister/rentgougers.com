@@ -10,7 +10,7 @@ import { useState, useMemo } from "react";
 
 export const meta: MetaFunction = () => {
   return [
-    { title: "RentGouging.com" },
+    { title: "RentGougers.com" },
     { name: "description", content: "LA fire's rent gouging" },
   ];
 };

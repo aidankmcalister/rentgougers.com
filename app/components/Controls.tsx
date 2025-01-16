@@ -18,14 +18,15 @@ export default function Controls({
   setUpdatedRentalPriceRange,
 }: ControlsProps) {
   return (
-    <Card className="h-full w-full p-5 flex flex-col gap-4">
+    <Card className="h-full w-full p-5 flex flex-col md:flex-row gap-4">
       <Input
         label="Search"
         value={search}
         onChange={(e) => setSearch(e.target.value)}
         aria-label="search"
+        className="w-full max-w-96"
       />
-      <div className="flex items-center gap-4 flex-col">
+      <div className="flex flex-col gap-4 md:flex-row md:items-center">
         <Slider
           className="w-full max-w-96"
           defaultValue={[0, 500000]}
