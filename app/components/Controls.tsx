@@ -99,7 +99,6 @@ export default function Controls({
         <Slider
           className="w-full lg:min-w-80 text-gray-400"
           defaultValue={[0, 500000]}
-          disableThumbScale
           classNames={{
             track: "bg-gray-200 dark:bg-gray-800",
           }}
