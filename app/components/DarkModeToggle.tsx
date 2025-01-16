@@ -23,7 +23,7 @@ const DarkModeToggle = () => {
   };
 
   return (
-    <Button isIconOnly size="lg" onPress={toggleDarkMode}>
+    <Button isIconOnly size="md" onPress={toggleDarkMode}>
       {isDarkMode ? (
         <Icon icon="tabler:moon-filled" />
       ) : (
