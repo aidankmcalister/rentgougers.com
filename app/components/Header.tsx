@@ -10,7 +10,7 @@ export default function Header() {
           Data from:{" "}
           <Link
             to="https://docs.google.com/spreadsheets/d/1RXWxLqTyWvAuq8A0PgaBuWeEn_G6qTLyTZ8lzfNEaNw/edit?gid=314416722#gid=314416722"
-            className="text-blue-500 hover:underline"
+            className="text-blue-500 underline"
             target="_blank"
             rel="noopener noreferrer">
             Tracking Rental Price Gouging in LA
