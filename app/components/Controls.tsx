@@ -71,7 +71,7 @@ export default function Controls({
           input: ["placeholder:italic placeholder:font-thin"],
         }}
         aria-label="search"
-        className="w-full xl:w-96"
+        className="w-full"
       />
       <div className="flex flex-col gap-4 lg:flex-row lg:items-center">
         <Slider
