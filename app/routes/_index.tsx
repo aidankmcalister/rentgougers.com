@@ -25,20 +25,36 @@ export const loader = async () => {
   }
 };
 export default function Index() {
-  const [filters, setFilters] = useState<string[]>([]);
   const [search, setSearch] = useState<string>("");
+  const [rentalPriceRange, setRentalPriceRange] = useState<[number, number]>([
+    0, 50000,
+  ]);
+  const [updatedRentalPriceRange, setUpdatedRentalPriceRange] = useState<
+    [number, number]
+  >([0, 50000]);
 
   const data = useLoaderData<RowData[]>();
 
   const filteredRows = useMemo(() => {
-    return data.filter((row) =>
-      Object.values(row).some(
+    return data.filter((row) => {
+      const rentalPrice = parseFloat(row.rentalPrice.replace(/[$,]/g, ""));
+      const updatedRentalPrice = parseFloat(
+        row.updatedRentalPrice.replace(/[$,]/g, "")
+      );
+      const isInPriceRange =
+        rentalPrice >= rentalPriceRange[0] &&
+        rentalPrice <= rentalPriceRange[1];
+      const isInUpdatedPriceRange =
+        updatedRentalPrice >= updatedRentalPriceRange[0] &&
+        updatedRentalPrice <= updatedRentalPriceRange[1];
+      const matchesSearch = Object.values(row).some(
         (value) =>
           typeof value === "string" &&
           value.toLowerCase().includes(search.toLowerCase())
-      )
-    );
-  }, [data, search]);
+      );
+      return isInPriceRange && isInUpdatedPriceRange && matchesSearch;
+    });
+  }, [data, search, rentalPriceRange, updatedRentalPriceRange]);
 
   return (
     <div className="min-h-screen">
@@ -46,10 +62,12 @@ export default function Index() {
       <div className="mx-4 space-y-4">
         <div className="w-full flex items-center">
           <Controls
-            filters={filters}
-            setFilters={setFilters}
             search={search}
             setSearch={setSearch}
+            rentalPriceRange={rentalPriceRange}
+            setRentalPriceRange={setRentalPriceRange}
+            updatedRentalPriceRange={updatedRentalPriceRange}
+            setUpdatedRentalPriceRange={setUpdatedRentalPriceRange}
           />
         </div>
         <Divider />

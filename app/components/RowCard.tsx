@@ -2,6 +2,7 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import { Link } from "@remix-run/react";
 import { format } from "date-fns";
 import { RowData } from "~/types/RowData";
+import { Tooltip } from "@nextui-org/tooltip";
 import {
   Card,
   CardBody,
@@ -58,9 +59,11 @@ export default function RowCard({ row }: { row: RowData }) {
               />
               <p>
                 Price Gouged on{" "}
-                {isNaN(new Date(row.date).getTime())
-                  ? "Invalid date"
-                  : format(new Date(row.date), "PP")}
+                <span className="font-bold">
+                  {isNaN(new Date(row.date).getTime())
+                    ? "Invalid date"
+                    : format(new Date(row.date), "PP")}
+                </span>
               </p>
             </div>
           </div>
@@ -111,7 +114,31 @@ export default function RowCard({ row }: { row: RowData }) {
               <div className="flex w-full text-gray-600 dark:text-gray-300 my-4">
                 <Icon width={20} height={20} className="mr-2" icon="mdi:home" />
                 <p className="text-sm">
-                  Property Owner: {row.propertyOwner || "Unknown"}
+                  Property Owner:{" "}
+                  {row.propertyOwner ? (
+                    <>
+                      {row.propertyOwner}
+
+                      {/* TODO: Decide if the number should be shown */}
+                      {row.propertyOwnerPhone !== "N/A" && (
+                        <Tooltip
+                          content={
+                            <p className="text-xs max-w-56 text-center text-gray-500">
+                              Be responsible for your own actions. I am not
+                              responsible for the accuracy of this phone number,
+                              nor what happens with it.
+                            </p>
+                          }
+                          placement="top">
+                          <span className="text-xs text-gray-500 ml-2">
+                            {row.propertyOwnerPhone}
+                          </span>
+                        </Tooltip>
+                      )}
+                    </>
+                  ) : (
+                    "Unknown"
+                  )}
                 </p>
               </div>
               <Button
