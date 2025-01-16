@@ -99,7 +99,7 @@ export default function Index() {
   return (
     <div className="min-h-screen">
       <Header />
-      <div className="mx-4 space-y-4">
+      <div className="m-4 space-y-4">
         <div className="w-full flex items-center">
           <Controls
             setSearch={setSearch}
@@ -111,7 +111,6 @@ export default function Index() {
             setSortDirectionUpdatedPrice={setSortDirectionUpdatedPrice}
           />
         </div>
-        <Divider />
         {loading ? (
           <div className="flex justify-center items-center h-96">
             <Riple color="#006FEE" size="medium" text="" textColor="" />
@@ -123,7 +122,7 @@ export default function Index() {
               <NumberFlow value={sortedRows.length} color="blue" /> total
               results
             </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {sortedRows.map((row) => (
                 <RowCard key={row.id} row={row} />
               ))}

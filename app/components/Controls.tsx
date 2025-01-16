@@ -23,13 +23,11 @@ export default function Controls({
   setSortDirectionUpdatedPrice,
 }: ControlsProps) {
   const debouncedSetSearch = useDebouncedCallback((value: string) => {
-    console.log("Debounced search input changed:", value);
     setSearch(value);
   }, 500);
 
   const debouncedSetRentalPriceRange = useDebouncedCallback(
     (value: [number, number]) => {
-      console.log("Debounced rental price range changed:", value);
       setRentalPriceRange(value);
     },
     500
@@ -37,7 +35,6 @@ export default function Controls({
 
   const debouncedSetUpdatedRentalPriceRange = useDebouncedCallback(
     (value: [number, number]) => {
-      console.log("Debounced updated rental price range changed:", value);
       setUpdatedRentalPriceRange(value);
     },
     500

@@ -69,16 +69,13 @@ export default function RowCard({ row }: { row: RowData }) {
             </div>
           </div>
           <div className="flex flex-col gap-2">
-            <Accordion
-              itemClasses={{
-                content: "px-2 my-2 text-sm",
-              }}>
+            <Accordion>
               <AccordionItem
                 key="additional-info"
                 aria-label="Additional Info"
                 startContent={<Icon width={20} height={20} icon="mdi:info" />}
                 title="Additional Info">
-                <p className="text-gray-600 dark:text-gray-400">
+                <p className="text-gray-600 dark:text-gray-400 p-2 text-xs">
                   {row.additionalInfo.length > 0 ? (
                     row.additionalInfo
                   ) : (
@@ -92,7 +89,7 @@ export default function RowCard({ row }: { row: RowData }) {
                 aria-label="Source Grabs"
                 startContent={<Icon width={20} height={20} icon="mdi:link" />}
                 title="Source Grabs">
-                <ul className="text-gray-600 dark:text-gray-400">
+                <ul className="text-gray-600 dark:text-gray-400 p-2 text-xs">
                   {row.sourceGrabs.length > 0 ? (
                     row.sourceGrabs.map((source) => (
                       <li key={source}>
