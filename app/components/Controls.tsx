@@ -40,7 +40,11 @@ export default function Controls({
           className="w-full lg:min-w-80 text-gray-400"
           defaultValue={[0, 500000]}
           formatOptions={{ style: "currency", currency: "USD" }}
-          label={<p className="font-bold text-white">Original Price Range</p>}
+          label={
+            <p className="font-bold dark:text-white text-black">
+              Original Price Range
+            </p>
+          }
           maxValue={50000}
           minValue={0}
           step={100}
@@ -52,7 +56,11 @@ export default function Controls({
           className="w-full lg:min-w-80 text-gray-400"
           defaultValue={[0, 500000]}
           formatOptions={{ style: "currency", currency: "USD" }}
-          label={<p className="font-bold text-white">Updated Price Range</p>}
+          label={
+            <p className="font-bold dark:text-white text-black">
+              Updated Price Range
+            </p>
+          }
           maxValue={50000}
           minValue={0}
           step={100}
@@ -74,7 +82,7 @@ export default function Controls({
           aria-label="sort-by-percent-increase"
           className={cn(
             "h-full min-h-12 w-1/2",
-            sortDirectionPercentIncrease ? "bg-blue-500" : "bg-gray-500"
+            sortDirectionPercentIncrease ? "bg-blue-500" : ""
           )}>
           <Icon
             width={25}
@@ -97,7 +105,7 @@ export default function Controls({
           aria-label="sort-by-updated-price"
           className={cn(
             "h-full min-h-12 w-1/2",
-            sortDirectionUpdatedPrice ? "bg-blue-500" : "bg-gray-500"
+            sortDirectionUpdatedPrice ? "bg-blue-500" : ""
           )}>
           <Icon
             width={25}
@@ -116,7 +124,7 @@ export default function Controls({
             setSortDirectionUpdatedPrice(null);
           }}
           aria-label="reset-sorting"
-          className="h-full min-h-12 w-1/2 bg-gray-500">
+          className="h-full min-h-12 w-1/2">
           Reset
         </Button>
       </div>
