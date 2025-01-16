@@ -22,6 +22,7 @@ export default defineConfig({
     tsconfigPaths(),
   ],
   server: {
+    host: true,
     hmr: {
       overlay: false,
     },
