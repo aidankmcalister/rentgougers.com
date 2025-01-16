@@ -114,6 +114,7 @@ export default function Controls({
       </div>
       <div className="flex gap-2">
         <Button
+          variant="faded"
           onPress={() => {
             setSortDirectionPercentIncrease(
               sortDirectionPercentIncrease === "asc" ? "desc" : "asc"
@@ -123,7 +124,7 @@ export default function Controls({
           aria-label="sort-by-percent-increase"
           className={cn(
             "h-full min-h-12 w-1/2",
-            sortDirectionPercentIncrease ? "bg-blue-500" : ""
+            sortDirectionPercentIncrease ? "bg-blue-500 text-white" : ""
           )}>
           <Icon
             width={25}
@@ -137,6 +138,7 @@ export default function Controls({
           <Icon width={25} height={25} icon="mdi:percent" />
         </Button>
         <Button
+          variant="faded"
           onPress={() => {
             setSortDirectionUpdatedPrice(
               sortDirectionUpdatedPrice === "asc" ? "desc" : "asc"
@@ -146,7 +148,7 @@ export default function Controls({
           aria-label="sort-by-updated-price"
           className={cn(
             "h-full min-h-12 w-1/2",
-            sortDirectionUpdatedPrice ? "bg-blue-500" : ""
+            sortDirectionUpdatedPrice ? "bg-blue-500 text-white" : ""
           )}>
           <Icon
             width={25}
@@ -160,6 +162,7 @@ export default function Controls({
           <Icon width={25} height={25} icon="mdi:dollar" />
         </Button>
         <Button
+          variant="faded"
           onPress={() => {
             setSortDirectionPercentIncrease(null);
             setSortDirectionUpdatedPrice(null);
