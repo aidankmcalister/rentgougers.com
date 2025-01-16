@@ -2,7 +2,6 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import { Link } from "@remix-run/react";
 import { format } from "date-fns";
 import { RowData } from "~/types/RowData";
-import { Tooltip } from "@nextui-org/tooltip";
 import {
   Card,
   CardBody,
@@ -27,7 +26,7 @@ export default function RowCard({ row }: { row: RowData }) {
                 className="flex items-center"
                 color="danger"
                 startContent={<Icon icon="mdi:arrow-up" />}>
-                {row.percentIncrease}
+                %{row.percentIncrease}
               </Chip>
             </div>
             <div className="flex items-center text-gray-600 dark:text-gray-300">

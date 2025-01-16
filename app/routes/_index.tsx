@@ -24,8 +24,14 @@ export const loader = async () => {
     throw new Response("Error loading data", { status: 500 });
   }
 };
+
 export default function Index() {
   const [search, setSearch] = useState<string>("");
+  const [sortDirectionPercentIncrease, setSortDirectionPercentIncrease] =
+    useState<"asc" | "desc" | null>(null);
+  const [sortDirectionUpdatedPrice, setSortDirectionUpdatedPrice] = useState<
+    "asc" | "desc" | null
+  >(null);
   const [rentalPriceRange, setRentalPriceRange] = useState<[number, number]>([
     0, 50000,
   ]);
@@ -56,6 +62,28 @@ export default function Index() {
     });
   }, [data, search, rentalPriceRange, updatedRentalPriceRange]);
 
+  const sortedRows = useMemo(() => {
+    const rows = [...filteredRows];
+    if (sortDirectionPercentIncrease) {
+      rows.sort((a, b) => {
+        const percentA = parseFloat(a.percentIncrease);
+        const percentB = parseFloat(b.percentIncrease);
+        return sortDirectionPercentIncrease === "asc"
+          ? percentA - percentB
+          : percentB - percentA;
+      });
+    } else if (sortDirectionUpdatedPrice) {
+      rows.sort((a, b) => {
+        const priceA = parseFloat(a.updatedRentalPrice.replace(/[$,]/g, ""));
+        const priceB = parseFloat(b.updatedRentalPrice.replace(/[$,]/g, ""));
+        return sortDirectionUpdatedPrice === "asc"
+          ? priceA - priceB
+          : priceB - priceA;
+      });
+    }
+    return rows;
+  }, [filteredRows, sortDirectionPercentIncrease, sortDirectionUpdatedPrice]);
+
   return (
     <div className="min-h-screen">
       <Header />
@@ -68,11 +96,15 @@ export default function Index() {
             setRentalPriceRange={setRentalPriceRange}
             updatedRentalPriceRange={updatedRentalPriceRange}
             setUpdatedRentalPriceRange={setUpdatedRentalPriceRange}
+            sortDirectionPercentIncrease={sortDirectionPercentIncrease}
+            setSortDirectionPercentIncrease={setSortDirectionPercentIncrease}
+            sortDirectionUpdatedPrice={sortDirectionUpdatedPrice}
+            setSortDirectionUpdatedPrice={setSortDirectionUpdatedPrice}
           />
         </div>
         <Divider />
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {filteredRows.map((row) => (
+          {sortedRows.map((row) => (
             <RowCard key={row.id} row={row} />
           ))}
         </div>

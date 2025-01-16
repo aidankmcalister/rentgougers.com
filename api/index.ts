@@ -56,14 +56,12 @@ export const fetchSubmissionsData = async () => {
       // propertyOwnerPhone: row[18],
       // propertyOwnerEmail: row[19],
       priceOriginalDate: row[20],
-      percentIncrease:
-        "%" +
-        (
-          ((Number(row[7].replace("$", "").replace(",", "")) -
-            Number(row[6].replace("$", "").replace(",", ""))) /
-            Number(row[6].replace("$", "").replace(",", ""))) *
-          100
-        ).toFixed(),
+      percentIncrease: (
+        ((Number(row[7].replace("$", "").replace(",", "")) -
+          Number(row[6].replace("$", "").replace(",", ""))) /
+          Number(row[6].replace("$", "").replace(",", ""))) *
+        100
+      ).toFixed(),
     };
     return record;
   });
