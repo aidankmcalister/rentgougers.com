@@ -31,7 +31,11 @@ export default function Controls({
       <Input
         label="Search"
         value={search}
+        placeholder="123 Billionaire Boulevard, Atlantis, CA"
         onChange={(e) => setSearch(e.target.value)}
+        classNames={{
+          input: ["placeholder:italic placeholder:font-thin"],
+        }}
         aria-label="search"
         className="w-full xl:w-96"
       />

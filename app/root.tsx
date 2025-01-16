@@ -8,6 +8,7 @@ import {
 import type { LinksFunction } from "@remix-run/node";
 import { NextUIProvider } from "@nextui-org/react";
 import "./tailwind.css";
+import "@fontsource/poppins/300.css";
 import "@fontsource/poppins/400.css";
 import "@fontsource/poppins/700.css";
 
