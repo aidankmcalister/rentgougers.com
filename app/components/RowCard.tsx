@@ -22,6 +22,7 @@ export default function RowCard({ row }: { row: RowData }) {
               <h2 className="text-xl font-semibold text-gray-800 dark:text-gray-100">
                 {row.address}
               </h2>
+              {row.id}
               <Chip
                 className="flex items-center"
                 color="danger"
@@ -118,7 +119,7 @@ export default function RowCard({ row }: { row: RowData }) {
                     target="_blank"
                     rel="noreferrer"
                     className="text-blue-500 underline hover:text-blue-600"
-                    to={row.listingUrl}>
+                    to={row.googleSheetLink}>
                     See Google Sheet
                   </Link>
                 </p>

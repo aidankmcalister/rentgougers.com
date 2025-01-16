@@ -62,6 +62,9 @@ export const fetchSubmissionsData = async () => {
           Number(row[6].replace("$", "").replace(",", ""))) *
         100
       ).toFixed(),
+      googleSheetLink: `https://docs.google.com/spreadsheets/d/1RXWxLqTyWvAuq8A0PgaBuWeEn_G6qTLyTZ8lzfNEaNw/edit?gid=314416722#gid=314416722&range=A${
+        index + 1
+      }`,
     };
     return record;
   });

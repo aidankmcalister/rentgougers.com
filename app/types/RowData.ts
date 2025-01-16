@@ -21,4 +21,5 @@ export type RowData = {
   propertyOwnerEmail?: string; // S
   priceOriginalDate: string; // T
   percentIncrease: string;
+  googleSheetLink: string;
 };
