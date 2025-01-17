@@ -8,7 +8,7 @@ import { useState, useMemo, useEffect } from "react";
 import { Riple } from "react-loading-indicators";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import NumberFlow from "@number-flow/react";
-import { Link } from "@nextui-org/react";
+import { Link } from "@heroui/react";
 
 export const meta: MetaFunction = () => {
   return [

@@ -10,7 +10,7 @@ import {
   AccordionItem,
   Divider,
   Button,
-} from "@nextui-org/react";
+} from "@heroui/react";
 
 export default function RowCard({ row }: { row: RowData }) {
   return (

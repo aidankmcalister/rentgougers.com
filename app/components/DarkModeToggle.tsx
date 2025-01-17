@@ -1,5 +1,5 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
-import { Button } from "@nextui-org/react";
+import { Button } from "@heroui/react";
 import { useState, useEffect } from "react";
 
 const DarkModeToggle = () => {
