@@ -6,12 +6,15 @@ import {
   ScrollRestoration,
 } from "@remix-run/react";
 import type { LinksFunction } from "@remix-run/node";
-import { NextUIProvider } from "@nextui-org/react";
+import { Button, Card, NextUIProvider } from "@nextui-org/react";
 import "./tailwind.css";
 import "@fontsource/poppins/300.css";
 import "@fontsource/poppins/400.css";
 import "@fontsource/poppins/700.css";
 import Header from "./components/Header";
+import Disclaimer from "./components/Disclaimer";
+import { Icon } from "@iconify/react/dist/iconify.js";
+import { useState } from "react";
 
 export const links: LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -27,6 +30,8 @@ export const links: LinksFunction = () => [
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
+  const [showDisclaimer, setShowDisclaimer] = useState(true);
+
   return (
     <html lang="en">
       <head>
@@ -44,6 +49,23 @@ export function Layout({ children }: { children: React.ReactNode }) {
           <div className="min-h-screen">
             <Header />
             {children}
+            {showDisclaimer && (
+              <Card
+                isBlurred
+                className="fixed bottom-0 right-0 w-full flex items-center justify-between flex-row p-2">
+                <Disclaimer />
+                <Button
+                  isIconOnly
+                  onPress={() => {
+                    setShowDisclaimer(false);
+                  }}
+                  color="primary"
+                  variant="shadow"
+                  aria-label="Close Disclaimer">
+                  <Icon icon="mdi:close" />
+                </Button>
+              </Card>
+            )}
           </div>
           <ScrollRestoration />
           <Scripts />
