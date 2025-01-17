@@ -6,14 +6,13 @@ import {
   ScrollRestoration,
 } from "@remix-run/react";
 import type { LinksFunction } from "@remix-run/node";
-import { Button, Card, NextUIProvider } from "@nextui-org/react";
+import { NextUIProvider } from "@nextui-org/react";
 import "./tailwind.css";
 import "@fontsource/poppins/300.css";
 import "@fontsource/poppins/400.css";
 import "@fontsource/poppins/700.css";
 import Header from "./components/Header";
 import Disclaimer from "./components/Disclaimer";
-import { Icon } from "@iconify/react/dist/iconify.js";
 import { useState } from "react";
 
 export const links: LinksFunction = () => [

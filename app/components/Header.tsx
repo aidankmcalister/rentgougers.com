@@ -6,7 +6,9 @@ export default function Header() {
   return (
     <div className="flex items-center justify-between p-5 border-b border-gray-200 dark:border-gray-800 shadow-md">
       <div>
-        <h1 className="text-2xl md:text-3xl font-bold">RentGougers.com</h1>
+        <h1 className="text-2xl md:text-3xl font-bold underline decoration-primary-400">
+          RentGougers.com
+        </h1>
         {/* <Link
           color="primary"
           href="https://docs.google.com/spreadsheets/d/1RXWxLqTyWvAuq8A0PgaBuWeEn_G6qTLyTZ8lzfNEaNw/edit?gid=314416722#gid=314416722"

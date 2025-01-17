@@ -115,7 +115,10 @@ export default function Index() {
         <>
           <h3 className="text-xl font-bold flex items-center gap-2">
             <Icon icon="mdi:home" />
-            <NumberFlow value={sortedRows.length} /> total results
+            <span className="text-primary-400">
+              <NumberFlow value={sortedRows.length} />
+            </span>{" "}
+            total results
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {sortedRows.map((row) => (
