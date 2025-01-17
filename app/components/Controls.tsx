@@ -4,6 +4,7 @@ import { useCallback } from "react";
 import { useDebouncedCallback } from "use-debounce";
 
 type ControlsProps = {
+  highestPrice: number;
   setSearch: (search: string) => void;
   setRentalPriceRange: (priceRange: [number, number]) => void;
   setUpdatedRentalPriceRange: (priceRange: [number, number]) => void;
@@ -14,6 +15,7 @@ type ControlsProps = {
 };
 
 export default function Controls({
+  highestPrice,
   setSearch,
   setRentalPriceRange,
   setUpdatedRentalPriceRange,
@@ -78,7 +80,7 @@ export default function Controls({
         <Slider
           size="sm"
           className="w-full lg:min-w-80 text-gray-400"
-          defaultValue={[0, 100000]}
+          defaultValue={[0, highestPrice]}
           formatOptions={{
             style: "currency",
             currency: "USD",
@@ -90,7 +92,7 @@ export default function Controls({
               Original Price Range
             </p>
           }
-          maxValue={100000}
+          maxValue={highestPrice}
           minValue={0}
           step={500}
           onChange={(value) =>
@@ -101,7 +103,7 @@ export default function Controls({
         <Slider
           size="sm"
           className="w-full lg:min-w-80 text-gray-400"
-          defaultValue={[0, 100000]}
+          defaultValue={[0, highestPrice]}
           classNames={{
             track: "bg-gray-200 dark:bg-gray-800",
           }}
@@ -116,7 +118,7 @@ export default function Controls({
               Updated Price Range
             </p>
           }
-          maxValue={100000}
+          maxValue={highestPrice}
           minValue={0}
           step={500}
           onChange={(value) =>
@@ -177,8 +179,8 @@ export default function Controls({
             setSortDirectionPercentIncrease(null);
             setSortDirectionUpdatedPrice(null);
             setSearch("");
-            setRentalPriceRange([0, 100000]);
-            setUpdatedRentalPriceRange([0, 100000]);
+            setRentalPriceRange([0, highestPrice]);
+            setUpdatedRentalPriceRange([0, highestPrice]);
           }}
           aria-label="reset-sorting"
           className="h-full min-h-12 w-1/2">

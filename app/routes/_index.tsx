@@ -43,6 +43,20 @@ export default function Index() {
 
   const data = useLoaderData<RowData[]>();
 
+  const highestPrice = data.reduce((max, row) => {
+    if (
+      isNaN(parseFloat(row.rentalPrice.replace(/[$,]/g, ""))) ||
+      isNaN(parseFloat(row.updatedRentalPrice.replace(/[$,]/g, "")))
+    ) {
+      return max;
+    }
+    const rentalPrice = parseFloat(row.rentalPrice.replace(/[$,]/g, ""));
+    const updatedRentalPrice = parseFloat(
+      row.updatedRentalPrice.replace(/[$,]/g, "")
+    );
+    return Math.max(max, rentalPrice, updatedRentalPrice);
+  }, 0);
+
   useEffect(() => {
     setLoading(true);
     const fetchData = async () => {
@@ -98,6 +112,7 @@ export default function Index() {
     <div className="m-4 space-y-4">
       <div className="w-full flex items-center">
         <Controls
+          highestPrice={highestPrice}
           setSearch={setSearch}
           setRentalPriceRange={setRentalPriceRange}
           setUpdatedRentalPriceRange={setUpdatedRentalPriceRange}
