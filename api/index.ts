@@ -66,7 +66,7 @@ export const fetchSubmissionsData = async () => {
   });
 
   // removes the first item which was the header row
-  jsonData.shift();
+  jsonData.splice(0, 2);
 
   // 6) Return the JSON data
   return jsonData;

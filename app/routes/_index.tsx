@@ -8,6 +8,7 @@ import { useState, useMemo, useEffect } from "react";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import NumberFlow from "@number-flow/react";
 import { CircularProgress } from "@nextui-org/react";
+import TopLevel from "~/components/TopLevel";
 
 export const meta: MetaFunction = () => {
   return [
