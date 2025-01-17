@@ -5,10 +5,9 @@ import { RowData } from "~/types/RowData";
 import RowCard from "~/components/RowCard";
 import Controls from "~/components/Controls";
 import { useState, useMemo, useEffect } from "react";
-import { Riple } from "react-loading-indicators";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import NumberFlow from "@number-flow/react";
-import { Link } from "@nextui-org/react";
+import { CircularProgress, Link } from "@nextui-org/react";
 
 export const meta: MetaFunction = () => {
   return [
@@ -127,7 +126,7 @@ export default function Index() {
         </div>
         {loading ? (
           <div className="flex justify-center items-center h-96">
-            <Riple color="#006FEE" size="medium" text="" textColor="" />
+            <CircularProgress size="lg" color="primary" className="w-10 h-10" />
           </div>
         ) : (
           <>
