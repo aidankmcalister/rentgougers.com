@@ -1,6 +1,6 @@
 import type { MetaFunction } from "@remix-run/node";
 import { json, useLoaderData } from "@remix-run/react";
-import { fetchSubmissionsData } from "api";
+import { fetchRentData } from "api";
 import { RowData } from "~/types/RowData";
 import RowCard from "~/components/RowCard";
 import Controls from "~/components/Controls";
@@ -19,10 +19,10 @@ export const meta: MetaFunction = () => {
 
 export const loader = async () => {
   try {
-    const data = await fetchSubmissionsData();
+    const data = await fetchRentData();
     return json(data);
   } catch (error) {
-    console.error("Error loading submissions data:", error);
+    console.error("Error loading rent data:", error);
     throw new Response("Error loading data", { status: 500 });
   }
 };
@@ -61,7 +61,7 @@ export default function Index() {
   useEffect(() => {
     setLoading(true);
     const fetchData = async () => {
-      await fetchSubmissionsData();
+      await fetchRentData();
       setLoading(false);
     };
     fetchData();

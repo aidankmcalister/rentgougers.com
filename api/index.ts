@@ -12,7 +12,7 @@ const parsePrice = (val: string | undefined): number => {
 };
 
 // Export the function to fetch and process the data
-export const fetchSubmissionsData = async (): Promise<RowData[]> => {
+export const fetchRentData = async (): Promise<RowData[]> => {
   // 1) Fetch the HTML of the "All Submissions" tab
   const response = await fetch(SHEET_URL);
   if (!response.ok) {
