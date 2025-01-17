@@ -1,5 +1,5 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
-import { Button, Card, cn, Input, Link, Slider } from "@nextui-org/react";
+import { Button, Card, cn, Input, Slider } from "@nextui-org/react";
 import { useCallback } from "react";
 import { useDebouncedCallback } from "use-debounce";
 
@@ -64,6 +64,7 @@ export default function Controls({
   return (
     <Card className="h-full w-full p-5 flex flex-col xl:flex-row gap-4">
       <Input
+        color="default"
         label="Search"
         placeholder="123 Billionaire Boulevard, Atlantis, CA"
         onChange={(e) => handleSearchChange(e.target.value)}
@@ -124,7 +125,8 @@ export default function Controls({
       </div>
       <div className="flex gap-2">
         <Button
-          variant="faded"
+          color={sortDirectionPercentIncrease === null ? "default" : "primary"}
+          variant="shadow"
           onPress={() => {
             setSortDirectionPercentIncrease(
               sortDirectionPercentIncrease === "asc" ? "desc" : "asc"
@@ -132,10 +134,7 @@ export default function Controls({
             setSortDirectionUpdatedPrice(null);
           }}
           aria-label="sort-by-percent-increase"
-          className={cn(
-            "h-full min-h-12 w-1/2",
-            sortDirectionPercentIncrease ? "bg-blue-500 text-white" : ""
-          )}>
+          className="h-full min-h-12 w-1/2">
           <Icon
             width={25}
             height={25}
@@ -148,7 +147,8 @@ export default function Controls({
           <Icon width={25} height={25} icon="mdi:percent" />
         </Button>
         <Button
-          variant="faded"
+          color={sortDirectionUpdatedPrice === null ? "default" : "primary"}
+          variant="shadow"
           onPress={() => {
             setSortDirectionUpdatedPrice(
               sortDirectionUpdatedPrice === "asc" ? "desc" : "asc"
@@ -156,10 +156,7 @@ export default function Controls({
             setSortDirectionPercentIncrease(null);
           }}
           aria-label="sort-by-updated-price"
-          className={cn(
-            "h-full min-h-12 w-1/2",
-            sortDirectionUpdatedPrice ? "bg-blue-500 text-white" : ""
-          )}>
+          className="h-full min-h-12 w-1/2">
           <Icon
             width={25}
             height={25}
@@ -172,7 +169,8 @@ export default function Controls({
           <Icon width={25} height={25} icon="mdi:dollar" />
         </Button>
         <Button
-          variant="faded"
+          color="primary"
+          variant="shadow"
           onPress={() => {
             setSortDirectionPercentIncrease(null);
             setSortDirectionUpdatedPrice(null);

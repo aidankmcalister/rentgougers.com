@@ -19,6 +19,7 @@ export default function Header() {
       <div className="flex items-center gap-2">
         <Button
           color="primary"
+          variant="shadow"
           isIconOnly
           as={Link}
           target="_blank"
