@@ -76,6 +76,7 @@ export default function Controls({
       />
       <div className="flex flex-col gap-4 lg:flex-row lg:items-center">
         <Slider
+          size="sm"
           className="w-full lg:min-w-80 text-gray-400"
           defaultValue={[0, 100000]}
           formatOptions={{
@@ -98,6 +99,7 @@ export default function Controls({
           aria-label="original-price-range"
         />
         <Slider
+          size="sm"
           className="w-full lg:min-w-80 text-gray-400"
           defaultValue={[0, 100000]}
           classNames={{
