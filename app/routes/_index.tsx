@@ -97,6 +97,7 @@ export default function Index() {
   }, [filteredRows, sortDirectionPercentIncrease, sortDirectionUpdatedPrice]);
   return (
     <div className="m-4 space-y-4">
+      <TopLevel data={data} />
       <div className="w-full flex items-center">
         <Controls
           setSearch={setSearch}

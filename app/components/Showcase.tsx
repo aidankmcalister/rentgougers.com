@@ -26,7 +26,7 @@ export default function Showcase({ data }: ShowcaseProps) {
           className="w-48 h-48 ">
           <Card
             key={row.id}
-            className={`relative w-full h-full  flex flex-col items-end justify-end ${
+            className={`relative w-full h-full  flex flex-col justify-end ${
               Number(row.percentIncrease) > 15
                 ? "bg-danger text-white"
                 : "bg-warning text-black"
@@ -35,7 +35,14 @@ export default function Showcase({ data }: ShowcaseProps) {
               {row.percentIncrease}
               <Icon icon="mdi:percent" className="-ml-1" />
             </h1>
-            <div className="p-4 text-xs font-bold">{row.address}</div>
+            <div className="p-2">
+              <div className="text-sm font-bold flex items-center gap-1">
+                {row.rentalPrice}
+                <Icon icon="mdi:arrow-right" className="w-5 h-5" />
+                {row.updatedRentalPrice}
+              </div>
+              <div className="text-xs font-bold">{row.address}</div>
+            </div>
             <Icon
               width={250}
               height={250}
