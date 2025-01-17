@@ -26,11 +26,17 @@ export default function RowCard({ row }: { row: RowData }) {
                 variant="shadow"
                 color={Number(row.percentIncrease) > 15 ? "danger" : "warning"}
                 startContent={<Icon icon="mdi:arrow-up" />}>
-                <div className="flex items-center">
-                  <Icon width={16} height={16} icon="mdi:percent" />
-                  {row.percentIncrease}
-                </div>
+                %{row.percentIncrease}
               </Chip>
+            </div>
+            <div className="flex items-center text-gray-600 dark:text-gray-300">
+              <Icon width={20} height={20} className="mr-2" icon="mdi:dollar" />
+              <p className="font-medium mr-2">
+                {row.updatedRentalPrice}{" "}
+                <span className="text-sm text-gray-500 dark:text-gray-400">
+                  (from {row.rentalPrice})
+                </span>
+              </p>
             </div>
             <div className="flex items-center text-gray-600 dark:text-gray-300">
               <Icon
@@ -41,15 +47,6 @@ export default function RowCard({ row }: { row: RowData }) {
               />
               <p>
                 {row.city}, {row.state} {row.zip}
-              </p>
-            </div>
-            <div className="flex items-center text-gray-600 dark:text-gray-300">
-              <Icon width={20} height={20} className="mr-2" icon="mdi:dollar" />
-              <p className="font-medium mr-2">
-                {row.updatedRentalPrice}{" "}
-                <span className="text-sm text-gray-500 dark:text-gray-400">
-                  (from {row.rentalPrice})
-                </span>
               </p>
             </div>
             <div className="flex items-center text-gray-600 dark:text-gray-300">
