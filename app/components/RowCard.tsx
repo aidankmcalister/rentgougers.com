@@ -8,7 +8,6 @@ import {
   Chip,
   Accordion,
   AccordionItem,
-  Divider,
   Button,
 } from "@nextui-org/react";
 
@@ -25,8 +24,14 @@ export default function RowCard({ row }: { row: RowData }) {
               <Chip
                 variant="shadow"
                 color={Number(row.percentIncrease) > 15 ? "danger" : "warning"}
-                startContent={<Icon icon="mdi:arrow-up" />}>
-                %{row.percentIncrease}
+                startContent={
+                  Number(row.percentIncrease) > 0 ? (
+                    <Icon icon="mdi:trending-up" className="ml-2" />
+                  ) : (
+                    <Icon icon="mdi:trending-down" className="ml-2" />
+                  )
+                }>
+                {row.percentIncrease !== "NaN" ? row.percentIncrease : "N/A"}%
               </Chip>
             </div>
             <div className="flex items-center text-gray-600 dark:text-gray-300">
@@ -66,9 +71,8 @@ export default function RowCard({ row }: { row: RowData }) {
               </p>
             </div>
           </div>
-          <Divider />
           <div className="flex flex-col gap-2">
-            <Accordion>
+            <Accordion variant="bordered">
               <AccordionItem
                 key="additional-info"
                 aria-label="Additional Info"
@@ -110,7 +114,6 @@ export default function RowCard({ row }: { row: RowData }) {
                 </ul>
               </AccordionItem>
             </Accordion>
-            <Divider />
             <div className="flex flex-col items-center justify-between ">
               <div className="flex w-full text-gray-600 dark:text-gray-300 my-4">
                 <Icon width={20} height={20} className="mr-2" icon="mdi:home" />
