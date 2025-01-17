@@ -7,8 +7,7 @@ import Controls from "~/components/Controls";
 import { useState, useMemo, useEffect } from "react";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import NumberFlow from "@number-flow/react";
-import { CircularProgress, Link } from "@nextui-org/react";
-import Disclaimer from "~/components/Disclaimer";
+import { CircularProgress } from "@nextui-org/react";
 
 export const meta: MetaFunction = () => {
   return [

@@ -31,7 +31,7 @@ export const fetchSubmissionsData = async () => {
 
   const filteredRows = tableRows.filter((row) => row.length > 5);
   // 4) Assume the first row is headers (adjust the index if your headers are lower)
-  const [headers, ...rows] = filteredRows;
+  const [...rows] = filteredRows;
   // 5) Convert each subsequent row to an object keyed by the headers
 
   const jsonData: RowData[] = rows.map((row, index) => {
