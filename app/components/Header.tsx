@@ -20,6 +20,7 @@ export default function Header() {
         <Button
           color="primary"
           variant="shadow"
+          aria-label="Github"
           isIconOnly
           as={Link}
           target="_blank"

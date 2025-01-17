@@ -8,6 +8,7 @@ import { useState, useMemo, useEffect } from "react";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import NumberFlow from "@number-flow/react";
 import { CircularProgress, Link } from "@nextui-org/react";
+import Disclaimer from "~/components/Disclaimer";
 
 export const meta: MetaFunction = () => {
   return [
@@ -95,53 +96,35 @@ export default function Index() {
     return rows;
   }, [filteredRows, sortDirectionPercentIncrease, sortDirectionUpdatedPrice]);
   return (
-    <div>
-      <div className="flex flex-row gap-2 m-4 items-center  text-gray-500">
-        <Icon icon="mdi:alert-circle" className="w-4 h-4" />
-        <p className="text-xs">
-          This visualization is based on data from a community-created Google
-          Sheet:{" "}
-          <Link
-            color="primary"
-            href="https://docs.google.com/spreadsheets/d/1RXWxLqTyWvAuq8A0PgaBuWeEn_G6qTLyTZ8lzfNEaNw/edit?gid=314416722#gid=314416722"
-            className="underline text-xs"
-            target="_blank"
-            rel="noopener noreferrer">
-            Tracking Rental Price Gouging in LA
-          </Link>
-          . This site is not affiliated with the Google Sheet or its creators.
-        </p>
+    <div className="m-4 space-y-4">
+      <div className="w-full flex items-center">
+        <Controls
+          setSearch={setSearch}
+          setRentalPriceRange={setRentalPriceRange}
+          setUpdatedRentalPriceRange={setUpdatedRentalPriceRange}
+          sortDirectionPercentIncrease={sortDirectionPercentIncrease}
+          setSortDirectionPercentIncrease={setSortDirectionPercentIncrease}
+          sortDirectionUpdatedPrice={sortDirectionUpdatedPrice}
+          setSortDirectionUpdatedPrice={setSortDirectionUpdatedPrice}
+        />
       </div>
-      <div className="m-4 space-y-4">
-        <div className="w-full flex items-center">
-          <Controls
-            setSearch={setSearch}
-            setRentalPriceRange={setRentalPriceRange}
-            setUpdatedRentalPriceRange={setUpdatedRentalPriceRange}
-            sortDirectionPercentIncrease={sortDirectionPercentIncrease}
-            setSortDirectionPercentIncrease={setSortDirectionPercentIncrease}
-            sortDirectionUpdatedPrice={sortDirectionUpdatedPrice}
-            setSortDirectionUpdatedPrice={setSortDirectionUpdatedPrice}
-          />
+      {loading ? (
+        <div className="flex justify-center items-center h-96">
+          <CircularProgress size="lg" color="primary" className="w-10 h-10" />
         </div>
-        {loading ? (
-          <div className="flex justify-center items-center h-96">
-            <CircularProgress size="lg" color="primary" className="w-10 h-10" />
+      ) : (
+        <>
+          <h3 className="text-xl font-bold flex items-center gap-2">
+            <Icon icon="mdi:home" />
+            <NumberFlow value={sortedRows.length} /> total results
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {sortedRows.map((row) => (
+              <RowCard key={row.id} row={row} />
+            ))}
           </div>
-        ) : (
-          <>
-            <h3 className="text-xl font-bold flex items-center gap-2">
-              <Icon icon="mdi:home" />
-              <NumberFlow value={sortedRows.length} /> total results
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {sortedRows.map((row) => (
-                <RowCard key={row.id} row={row} />
-              ))}
-            </div>
-          </>
-        )}
-      </div>
+        </>
+      )}
     </div>
   );
 }

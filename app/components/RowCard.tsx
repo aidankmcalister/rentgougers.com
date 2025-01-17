@@ -93,6 +93,7 @@ export default function RowCard({ row }: { row: RowData }) {
                     row.sourceGrabs.map((source) => (
                       <li key={source}>
                         <Link
+                          aria-label="Source Grab"
                           target="_blank"
                           rel="noreferrer"
                           className="hover:underline"
@@ -116,6 +117,7 @@ export default function RowCard({ row }: { row: RowData }) {
                 <p className="text-sm">
                   Property Owner:{" "}
                   <Link
+                    aria-label="Google Sheet"
                     color="primary"
                     target="_blank"
                     rel="noreferrer"
@@ -127,6 +129,7 @@ export default function RowCard({ row }: { row: RowData }) {
               </div>
               <div className="flex gap-2 w-full">
                 <Button
+                  aria-label="Listing Site"
                   color="primary"
                   as={Link}
                   to={row.listingUrl}
@@ -137,6 +140,7 @@ export default function RowCard({ row }: { row: RowData }) {
                   {row.listingSite}
                 </Button>
                 <Button
+                  aria-label="Google Maps"
                   color="primary"
                   as={Link}
                   to={row.googleMapLink}
