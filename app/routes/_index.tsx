@@ -8,7 +8,6 @@ import { useState, useMemo, useEffect } from "react";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import NumberFlow from "@number-flow/react";
 import { CircularProgress } from "@nextui-org/react";
-import TopLevel from "~/components/TopLevel";
 
 export const meta: MetaFunction = () => {
   return [
@@ -97,7 +96,6 @@ export default function Index() {
   }, [filteredRows, sortDirectionPercentIncrease, sortDirectionUpdatedPrice]);
   return (
     <div className="m-4 space-y-4">
-      <TopLevel data={data} />
       <div className="w-full flex items-center">
         <Controls
           setSearch={setSearch}
