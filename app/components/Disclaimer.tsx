@@ -10,7 +10,7 @@ export default function Disclaimer({
     <Card
       isBlurred
       className="fixed bottom-0 right-0 w-full flex items-center justify-between flex-row p-2">
-      <div className="flex flex-row gap-2 m-4 items-center  text-gray-500">
+      <div className="flex flex-row gap-2 m-4 items-center  text-gray-500 dark:text-gray-300">
         <Icon icon="mdi:alert-circle" className="w-4 h-4 hidden md:block" />
         <p className="text-xs">
           This visualization is based on data from a community-created Google
