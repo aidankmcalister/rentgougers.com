@@ -8,6 +8,7 @@ import { useState, useMemo, useEffect } from "react";
 import { Riple } from "react-loading-indicators";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import NumberFlow from "@number-flow/react";
+import { Link } from "@nextui-org/react";
 
 export const meta: MetaFunction = () => {
   return [
@@ -101,13 +102,14 @@ export default function Index() {
         <p className="text-xs">
           This visualization is based on data from a community-created Google
           Sheet:{" "}
-          <a
+          <Link
+            color="primary"
             href="https://docs.google.com/spreadsheets/d/1RXWxLqTyWvAuq8A0PgaBuWeEn_G6qTLyTZ8lzfNEaNw/edit?gid=314416722#gid=314416722"
-            className="text-blue-500 underline hover:text-blue-600"
+            className="underline text-xs"
             target="_blank"
             rel="noopener noreferrer">
             Tracking Rental Price Gouging in LA
-          </a>
+          </Link>
           . This site is not affiliated with the Google Sheet or its creators.
         </p>
       </div>

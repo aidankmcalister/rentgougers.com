@@ -116,9 +116,10 @@ export default function RowCard({ row }: { row: RowData }) {
                 <p className="text-sm">
                   Property Owner:{" "}
                   <Link
+                    color="primary"
                     target="_blank"
                     rel="noreferrer"
-                    className="text-blue-500 underline hover:text-blue-600"
+                    className="underline"
                     to={row.googleSheetLink}>
                     See Google Sheet
                   </Link>
