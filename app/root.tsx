@@ -50,21 +50,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
             <Header />
             {children}
             {showDisclaimer && (
-              <Card
-                isBlurred
-                className="fixed bottom-0 right-0 w-full flex items-center justify-between flex-row p-2">
-                <Disclaimer />
-                <Button
-                  isIconOnly
-                  onPress={() => {
-                    setShowDisclaimer(false);
-                  }}
-                  color="primary"
-                  variant="shadow"
-                  aria-label="Close Disclaimer">
-                  <Icon icon="mdi:close" />
-                </Button>
-              </Card>
+              <Disclaimer setShowDisclaimer={setShowDisclaimer} />
             )}
           </div>
           <ScrollRestoration />
