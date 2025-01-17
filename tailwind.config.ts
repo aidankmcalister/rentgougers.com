@@ -44,13 +44,13 @@ export default {
         light: {
           colors: {
             primary: {
-              DEFAULT: "#deae09",
-              100: "#f6da9e",
-              200: "#f3d186",
-              300: "#eec86e",
-              400: "#e9bf54",
-              500: "#e4b738",
-              600: "#deae09",
+              DEFAULT: "#e63946",
+              100: "#ffb3b3",
+              200: "#ff9999",
+              300: "#ff6666",
+              400: "#ff4d4d",
+              500: "#e63946",
+              600: "#e63946",
               foreground: "#ffffff",
             },
           },
