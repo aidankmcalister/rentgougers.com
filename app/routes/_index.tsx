@@ -63,22 +63,6 @@ export default function Index() {
     return Math.max(max, rentalPrice, updatedRentalPrice);
   }, 0);
 
-  useEffect(() => {
-    setItems(data.slice(0, itemsPerPage));
-    setLoading(false);
-  }, [data]);
-
-  const fetchData = async () => {
-    if (offset + itemsPerPage >= data.length) {
-      setHasMore(false);
-      return;
-    }
-
-    const newItems = data.slice(offset, offset + itemsPerPage);
-    setItems((prev) => [...prev, ...newItems]);
-    setOffset((prev) => prev + itemsPerPage);
-  };
-
   const filteredRows = useMemo(() => {
     return data.filter((row) => {
       const rentalPrice = parseFloat(row.rentalPrice.replace(/[$,]/g, ""));
@@ -122,6 +106,21 @@ export default function Index() {
     return rows;
   }, [filteredRows, sortDirectionPercentIncrease, sortDirectionUpdatedPrice]);
 
+  useEffect(() => {
+    setItems(sortedRows.slice(0, itemsPerPage));
+    setLoading(false);
+  }, [sortedRows]);
+
+  const fetchData = async () => {
+    if (offset + itemsPerPage >= sortedRows.length) {
+      setHasMore(false);
+      return;
+    }
+    const newItems = sortedRows.slice(offset, offset + itemsPerPage);
+    setItems((prev) => [...prev, ...newItems]);
+    setOffset((prev) => prev + itemsPerPage);
+  };
+
   return (
     <div className="m-4 space-y-4">
       <div className="w-full flex items-center">
@@ -154,7 +153,7 @@ export default function Index() {
           <h3 className="text-xl font-bold flex items-center gap-2">
             <Icon icon="mdi:home" />
             <span className="text-primary-400">
-              <NumberFlow value={items.length} />
+              <NumberFlow value={data.length} />
             </span>{" "}
             total results
           </h3>
