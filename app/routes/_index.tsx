@@ -72,6 +72,8 @@ export default function Index() {
         row.updatedRentalPrice.replace(/[$,]/g, "")
       );
 
+      const isValidRentalPrice = rentalPrice >= 100;
+
       const isInPriceRange =
         (rentalPrice >= rentalPriceRange[0] &&
           rentalPrice <= rentalPriceRange[1]) ||
@@ -87,7 +89,12 @@ export default function Index() {
           typeof value === "string" &&
           value.toLowerCase().includes(search.toLowerCase())
       );
-      return isInPriceRange && isInUpdatedPriceRange && matchesSearch;
+      return (
+        isValidRentalPrice &&
+        isInPriceRange &&
+        isInUpdatedPriceRange &&
+        matchesSearch
+      );
     });
   }, [data, search, rentalPriceRange, updatedRentalPriceRange]);
 
