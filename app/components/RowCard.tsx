@@ -42,7 +42,7 @@ export default function RowCard({ row }: { row: RowData }) {
                 startContent={
                   <Icon width={20} height={20} icon="mdi:alert-circle" />
                 }>
-                House Possibly Rebuilt
+                Property Possibly Rebuilt
               </Chip>
             )}
             <div className="flex items-center text-gray-600 dark:text-gray-300">
