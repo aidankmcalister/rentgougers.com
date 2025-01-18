@@ -90,7 +90,15 @@ export default function Index() {
 
   const sortedRows = useMemo(() => {
     const rows = [...filteredRows];
-    if (sortDirectionPercentIncrease) {
+    if (sortDirectionDatePosted) {
+      rows.sort((a, b) => {
+        const dateA = new Date(a.datePosted).getTime();
+        const dateB = new Date(b.datePosted).getTime();
+        return sortDirectionDatePosted === "asc"
+          ? dateA - dateB
+          : dateB - dateA;
+      });
+    } else if (sortDirectionPercentIncrease) {
       rows.sort((a, b) => {
         const percentA = a.percentIncrease;
         const percentB = b.percentIncrease;
@@ -108,7 +116,12 @@ export default function Index() {
       });
     }
     return rows;
-  }, [filteredRows, sortDirectionPercentIncrease, sortDirectionUpdatedPrice]);
+  }, [
+    filteredRows,
+    sortDirectionDatePosted,
+    sortDirectionPercentIncrease,
+    sortDirectionUpdatedPrice,
+  ]);
 
   useEffect(() => {
     setItems(sortedRows.slice(0, itemsPerPage));

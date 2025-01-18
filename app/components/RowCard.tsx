@@ -74,9 +74,18 @@ export default function RowCard({ row }: { row: RowData }) {
               />
               <p>
                 Price Gouged on{" "}
-                <span className="font-bold">{format(row.date, "PP")}</span>
+                <span className="font-bold">
+                  {format(row.priceIncreaseDate, "PP")}
+                </span>
               </p>
             </div>
+          </div>
+          <div className="flex items-center text-gray-600 dark:text-gray-300">
+            <Icon width={20} height={20} className="mr-2" icon="mdi:calendar" />
+            <p>
+              Posted to sheet on{" "}
+              <span className="font-bold">{format(row.datePosted, "PP")}</span>
+            </p>
           </div>
           <div className="flex flex-col gap-2">
             <Accordion variant="bordered">

@@ -52,7 +52,7 @@ export const fetchRentData = async (): Promise<RowData[]> => {
 
     const record: RowData = {
       id: sheetRow - 1,
-      date: date,
+      datePosted: date,
       address: row[2],
       city: row[3],
       state: row[4],
