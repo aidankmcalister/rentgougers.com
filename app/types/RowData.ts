@@ -1,6 +1,6 @@
 export type RowData = {
   id: number;
-  date: string; // A
+  date: Date; // A
   address: string; // B
   city: string; // C
   state: string; // D

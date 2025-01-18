@@ -48,9 +48,11 @@ export const fetchRentData = async (): Promise<RowData[]> => {
 
     const sheetRow = index + 3;
 
+    const date = new Date(row[1]);
+
     const record: RowData = {
       id: sheetRow - 1,
-      date: row[1],
+      date: date,
       address: row[2],
       city: row[3],
       state: row[4],
