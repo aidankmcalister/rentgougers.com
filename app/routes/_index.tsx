@@ -54,19 +54,6 @@ export default function Index() {
 
   const data = useLoaderData<RowData[]>();
 
-  const highestPrice = data.reduce((max, row) => {
-    const rentalPrice = row.rentalPrice;
-    const updatedRentalPrice = row.updatedRentalPrice;
-
-    if (isNaN(rentalPrice) || isNaN(updatedRentalPrice)) {
-      console.warn("Invalid price detected for row:", row);
-      return max;
-    }
-
-    return Math.max(max, rentalPrice, updatedRentalPrice);
-  }, 0);
-  console.log("highestPrice", highestPrice);
-
   const filteredRows = useMemo(() => {
     return data.filter((row) => {
       const rentalPrice = row.rentalPrice;

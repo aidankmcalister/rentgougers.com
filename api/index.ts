@@ -69,6 +69,7 @@ export const fetchRentData = async (): Promise<RowData[]> => {
       googleMapLink: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
         `${row[2]} ${row[3]} ${row[4]} ${row[5]}`
       )}`,
+      housePossiblyRebuilt: percentIncrease > 500,
     };
     return record;
   });

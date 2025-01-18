@@ -23,4 +23,5 @@ export type RowData = {
   percentIncrease: number;
   googleSheetLink: string;
   googleMapLink: string;
+  housePossiblyRebuilt: boolean;
 };

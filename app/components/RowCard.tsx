@@ -10,6 +10,7 @@ import {
   AccordionItem,
   Button,
 } from "@nextui-org/react";
+import { formatPercent, formatPrice } from "~/utils/formats";
 
 export default function RowCard({ row }: { row: RowData }) {
   return (
@@ -31,16 +32,25 @@ export default function RowCard({ row }: { row: RowData }) {
                     <Icon icon="mdi:trending-down" className="ml-2" />
                   )
                 }>
-                {/* {row.percentIncrease !== "NaN" ? row.percentIncrease : "N/A"}% */}
-                {row.percentIncrease}%
+                {formatPercent(row.percentIncrease)}
               </Chip>
             </div>
+            {row.housePossiblyRebuilt && (
+              <Chip
+                variant="flat"
+                color="primary"
+                startContent={
+                  <Icon width={20} height={20} icon="mdi:alert-circle" />
+                }>
+                House Possibly Rebuilt
+              </Chip>
+            )}
             <div className="flex items-center text-gray-600 dark:text-gray-300">
               <Icon width={20} height={20} className="mr-2" icon="mdi:dollar" />
               <p className="font-medium mr-2">
-                {row.updatedRentalPrice}{" "}
+                {formatPrice(row.updatedRentalPrice)}{" "}
                 <span className="text-sm text-gray-500 dark:text-gray-400">
-                  (from {row.rentalPrice})
+                  (from {formatPrice(row.rentalPrice)})
                 </span>
               </p>
             </div>
