@@ -4,7 +4,6 @@ import { useCallback } from "react";
 import { useDebouncedCallback } from "use-debounce";
 
 type ControlsProps = {
-  highestPrice: number;
   setSearch: (search: string) => void;
   setRentalPriceRange: (priceRange: [number, number]) => void;
   setUpdatedRentalPriceRange: (priceRange: [number, number]) => void;
@@ -15,7 +14,6 @@ type ControlsProps = {
 };
 
 export default function Controls({
-  highestPrice,
   setSearch,
   setRentalPriceRange,
   setUpdatedRentalPriceRange,
@@ -80,7 +78,15 @@ export default function Controls({
         <Slider
           size="sm"
           className="w-full lg:min-w-80 text-gray-400"
-          defaultValue={[0, highestPrice]}
+          getValue={(value) => {
+            if (Array.isArray(value) && value.length === 2) {
+              return `$${value[0].toLocaleString()} - $${value[1].toLocaleString()}${
+                value[1] === 80000 ? "+" : ""
+              }`;
+            }
+            return "";
+          }}
+          defaultValue={[0, 80000]}
           formatOptions={{
             style: "currency",
             currency: "USD",
@@ -92,9 +98,9 @@ export default function Controls({
               Original Price Range
             </p>
           }
-          maxValue={highestPrice}
+          maxValue={80000}
           minValue={0}
-          step={500}
+          step={1000}
           onChange={(value) =>
             handleRentalPriceChange(value as [number, number])
           }
@@ -103,9 +109,17 @@ export default function Controls({
         <Slider
           size="sm"
           className="w-full lg:min-w-80 text-gray-400"
-          defaultValue={[0, highestPrice]}
+          defaultValue={[0, 80000]}
           classNames={{
             track: "bg-gray-200 dark:bg-gray-800",
+          }}
+          getValue={(value) => {
+            if (Array.isArray(value) && value.length === 2) {
+              return `$${value[0].toLocaleString()} - $${value[1].toLocaleString()}${
+                value[1] === 80000 ? "+" : ""
+              }`;
+            }
+            return "";
           }}
           formatOptions={{
             style: "currency",
@@ -118,9 +132,9 @@ export default function Controls({
               Updated Price Range
             </p>
           }
-          maxValue={highestPrice}
+          maxValue={80000}
           minValue={0}
-          step={500}
+          step={1000}
           onChange={(value) =>
             handleUpdatedRentalPriceChange(value as [number, number])
           }
@@ -179,8 +193,8 @@ export default function Controls({
             setSortDirectionPercentIncrease(null);
             setSortDirectionUpdatedPrice(null);
             setSearch("");
-            setRentalPriceRange([0, highestPrice]);
-            setUpdatedRentalPriceRange([0, highestPrice]);
+            setRentalPriceRange([0, 80000]);
+            setUpdatedRentalPriceRange([0, 80000]);
           }}
           aria-label="reset-sorting"
           className="h-full min-h-12 w-1/2">
