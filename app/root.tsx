@@ -14,6 +14,7 @@ import "@fontsource/poppins/700.css";
 import Header from "./components/Header";
 import Disclaimer from "./components/Disclaimer";
 import { useState } from "react";
+import { Analytics } from "@vercel/analytics/remix";
 
 export const links: LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -52,6 +53,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
               <Disclaimer setShowDisclaimer={setShowDisclaimer} />
             )}
           </div>
+          <Analytics />
           <ScrollRestoration />
           <Scripts />
         </NextUIProvider>
