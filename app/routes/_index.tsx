@@ -1,6 +1,6 @@
 import type { MetaFunction } from "@remix-run/node";
 import { json, useLoaderData } from "@remix-run/react";
-import { fetchRentData } from "api";
+import { fetchRentData, parsePrice } from "api";
 import { RowData } from "~/types/RowData";
 import RowCard from "~/components/RowCard";
 import Controls from "~/components/Controls";
@@ -50,11 +50,8 @@ export default function Index() {
   const data = useLoaderData<RowData[]>();
 
   const highestPrice = data.reduce((max, row) => {
-    const rentalPriceStr = row.rentalPrice.replace(/[$,]/g, "");
-    const updatedRentalPriceStr = row.updatedRentalPrice.replace(/[$,]/g, "");
-
-    const rentalPrice = parseFloat(rentalPriceStr);
-    const updatedRentalPrice = parseFloat(updatedRentalPriceStr);
+    const rentalPrice = parsePrice(row.rentalPrice);
+    const updatedRentalPrice = parsePrice(row.updatedRentalPrice);
 
     if (isNaN(rentalPrice) || isNaN(updatedRentalPrice)) {
       console.warn("Invalid price detected for row:", row);
@@ -67,10 +64,8 @@ export default function Index() {
 
   const filteredRows = useMemo(() => {
     return data.filter((row) => {
-      const rentalPrice = parseFloat(row.rentalPrice.replace(/[$,]/g, ""));
-      const updatedRentalPrice = parseFloat(
-        row.updatedRentalPrice.replace(/[$,]/g, "")
-      );
+      const rentalPrice = parsePrice(row.rentalPrice);
+      const updatedRentalPrice = parsePrice(row.updatedRentalPrice);
 
       const isValidRentalPrice = rentalPrice >= 100;
 
@@ -110,8 +105,8 @@ export default function Index() {
       });
     } else if (sortDirectionUpdatedPrice) {
       rows.sort((a, b) => {
-        const priceA = parseFloat(a.updatedRentalPrice.replace(/[$,]/g, ""));
-        const priceB = parseFloat(b.updatedRentalPrice.replace(/[$,]/g, ""));
+        const priceA = parsePrice(a.updatedRentalPrice);
+        const priceB = parsePrice(b.updatedRentalPrice);
         return sortDirectionUpdatedPrice === "asc"
           ? priceA - priceB
           : priceB - priceA;
