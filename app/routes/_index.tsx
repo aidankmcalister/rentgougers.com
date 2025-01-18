@@ -45,7 +45,7 @@ export default function Index() {
   const [hasMore, setHasMore] = useState<boolean>(true);
   const [items, setItems] = useState<RowData[]>([]);
   const [offset, setOffset] = useState<number>(0);
-  const itemsPerPage = 20; // Number of items to load per fetch
+  const itemsPerPage = 20;
 
   const data = useLoaderData<RowData[]>();
 
@@ -64,21 +64,19 @@ export default function Index() {
   }, 0);
 
   useEffect(() => {
-    setItems(data.slice(0, itemsPerPage)); // Load the first set of items
+    setItems(data.slice(0, itemsPerPage));
     setLoading(false);
   }, [data]);
 
   const fetchData = async () => {
-    // Check if there are more items to load
     if (offset + itemsPerPage >= data.length) {
       setHasMore(false);
       return;
     }
 
-    // Load the next set of items
     const newItems = data.slice(offset, offset + itemsPerPage);
     setItems((prev) => [...prev, ...newItems]);
-    setOffset((prev) => prev + itemsPerPage); // Update the offset
+    setOffset((prev) => prev + itemsPerPage);
   };
 
   const filteredRows = useMemo(() => {
