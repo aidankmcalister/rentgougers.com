@@ -14,7 +14,12 @@ export const meta: MetaFunction = () => {
   return [
     { title: "RentGougers.com" },
     { name: "description", content: "LA fire's rent gouging" },
-    { name: "og:image", content: "/rentgougers-preview.png" },
+    {
+      name: "og:image",
+      content: "/rentgougers-preview.png",
+      width: "1200",
+      height: "630",
+    },
   ];
 };
 
