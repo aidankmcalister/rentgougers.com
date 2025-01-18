@@ -31,7 +31,8 @@ export default function RowCard({ row }: { row: RowData }) {
                     <Icon icon="mdi:trending-down" className="ml-2" />
                   )
                 }>
-                {row.percentIncrease !== "NaN" ? row.percentIncrease : "N/A"}%
+                {/* {row.percentIncrease !== "NaN" ? row.percentIncrease : "N/A"}% */}
+                {row.percentIncrease}%
               </Chip>
             </div>
             <div className="flex items-center text-gray-600 dark:text-gray-300">

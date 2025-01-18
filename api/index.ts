@@ -4,7 +4,7 @@ import { RowData } from "../app/types/RowData";
 const SHEET_URL =
   "https://docs.google.com/spreadsheets/d/1RXWxLqTyWvAuq8A0PgaBuWeEn_G6qTLyTZ8lzfNEaNw/htmlview?gid=314416722";
 
-export const parsePrice = (val: string | undefined): number => {
+const parsePrice = (val: string | undefined): number => {
   if (!val) return 0;
   return Number(val.replace(/\$/g, "").replace(/,/g, "").trim()) || 0;
 };
@@ -39,11 +39,11 @@ export const fetchRentData = async (): Promise<RowData[]> => {
     const originalRentalNum = parsePrice(row[6]);
     const updatedRentalNum = parsePrice(row[7]);
 
-    let percentIncrease = "0";
+    let percentIncrease = 0;
     if (originalRentalNum > 0 && updatedRentalNum > 0) {
       const increase =
         ((updatedRentalNum - originalRentalNum) / originalRentalNum) * 100;
-      percentIncrease = increase.toFixed();
+      percentIncrease = parseFloat(increase.toFixed());
     }
 
     const sheetRow = index + 3;
@@ -55,8 +55,8 @@ export const fetchRentData = async (): Promise<RowData[]> => {
       city: row[3],
       state: row[4],
       zip: row[5],
-      rentalPrice: row[6]?.replace(/\.00$/, "") ?? "",
-      updatedRentalPrice: row[7]?.replace(/\.00$/, "") ?? "",
+      rentalPrice: originalRentalNum,
+      updatedRentalPrice: updatedRentalNum,
       priceIncreaseDate: row[8],
       listingSite: row[9],
       listingUrl: row[10],

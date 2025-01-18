@@ -1,6 +1,6 @@
 import type { MetaFunction } from "@remix-run/node";
 import { json, useLoaderData } from "@remix-run/react";
-import { fetchRentData, parsePrice } from "api";
+import { fetchRentData } from "api";
 import { RowData } from "~/types/RowData";
 import RowCard from "~/components/RowCard";
 import Controls from "~/components/Controls";
@@ -55,8 +55,8 @@ export default function Index() {
   const data = useLoaderData<RowData[]>();
 
   const highestPrice = data.reduce((max, row) => {
-    const rentalPrice = parsePrice(row.rentalPrice);
-    const updatedRentalPrice = parsePrice(row.updatedRentalPrice);
+    const rentalPrice = row.rentalPrice;
+    const updatedRentalPrice = row.updatedRentalPrice;
 
     if (isNaN(rentalPrice) || isNaN(updatedRentalPrice)) {
       console.warn("Invalid price detected for row:", row);
@@ -69,8 +69,8 @@ export default function Index() {
 
   const filteredRows = useMemo(() => {
     return data.filter((row) => {
-      const rentalPrice = parsePrice(row.rentalPrice);
-      const updatedRentalPrice = parsePrice(row.updatedRentalPrice);
+      const rentalPrice = row.rentalPrice;
+      const updatedRentalPrice = row.updatedRentalPrice;
 
       const isValidRentalPrice = rentalPrice >= 100;
 
@@ -102,16 +102,16 @@ export default function Index() {
     const rows = [...filteredRows];
     if (sortDirectionPercentIncrease) {
       rows.sort((a, b) => {
-        const percentA = parseFloat(a.percentIncrease) || 0;
-        const percentB = parseFloat(b.percentIncrease) || 0;
+        const percentA = a.percentIncrease;
+        const percentB = b.percentIncrease;
         return sortDirectionPercentIncrease === "asc"
           ? percentA - percentB
           : percentB - percentA;
       });
     } else if (sortDirectionUpdatedPrice) {
       rows.sort((a, b) => {
-        const priceA = parsePrice(a.updatedRentalPrice);
-        const priceB = parsePrice(b.updatedRentalPrice);
+        const priceA = a.updatedRentalPrice;
+        const priceB = b.updatedRentalPrice;
         return sortDirectionUpdatedPrice === "asc"
           ? priceA - priceB
           : priceB - priceA;

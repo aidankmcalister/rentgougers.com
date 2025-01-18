@@ -5,8 +5,8 @@ export type RowData = {
   city: string; // C
   state: string; // D
   zip: string; // E
-  rentalPrice: string; // F
-  updatedRentalPrice: string; // G
+  rentalPrice: number; // F
+  updatedRentalPrice: number; // G
   priceIncreaseDate: string; // H
   listingSite: string; // I
   listingUrl: string; // J
@@ -20,7 +20,7 @@ export type RowData = {
   propertyOwnerPhone?: string; // R
   propertyOwnerEmail?: string; // S
   priceOriginalDate: string; // T
-  percentIncrease: string;
+  percentIncrease: number;
   googleSheetLink: string;
   googleMapLink: string;
 };
