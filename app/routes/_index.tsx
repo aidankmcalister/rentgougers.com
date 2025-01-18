@@ -36,11 +36,11 @@ export default function Index() {
     "asc" | "desc" | null
   >(null);
   const [rentalPriceRange, setRentalPriceRange] = useState<[number, number]>([
-    0, 50000,
+    0, 80000,
   ]);
   const [updatedRentalPriceRange, setUpdatedRentalPriceRange] = useState<
     [number, number]
-  >([0, 50000]);
+  >([0, 80000]);
   const [loading, setLoading] = useState<boolean>(true);
   const [hasMore, setHasMore] = useState<boolean>(true);
   const [items, setItems] = useState<RowData[]>([]);
@@ -50,18 +50,20 @@ export default function Index() {
   const data = useLoaderData<RowData[]>();
 
   const highestPrice = data.reduce((max, row) => {
-    if (
-      isNaN(parseFloat(row.rentalPrice.replace(/[$,]/g, ""))) ||
-      isNaN(parseFloat(row.updatedRentalPrice.replace(/[$,]/g, "")))
-    ) {
+    const rentalPriceStr = row.rentalPrice.replace(/[$,]/g, "");
+    const updatedRentalPriceStr = row.updatedRentalPrice.replace(/[$,]/g, "");
+
+    const rentalPrice = parseFloat(rentalPriceStr);
+    const updatedRentalPrice = parseFloat(updatedRentalPriceStr);
+
+    if (isNaN(rentalPrice) || isNaN(updatedRentalPrice)) {
+      console.warn("Invalid price detected for row:", row);
       return max;
     }
-    const rentalPrice = parseFloat(row.rentalPrice.replace(/[$,]/g, ""));
-    const updatedRentalPrice = parseFloat(
-      row.updatedRentalPrice.replace(/[$,]/g, "")
-    );
+
     return Math.max(max, rentalPrice, updatedRentalPrice);
   }, 0);
+  console.log("highestPrice", highestPrice);
 
   const filteredRows = useMemo(() => {
     return data.filter((row) => {
@@ -69,12 +71,17 @@ export default function Index() {
       const updatedRentalPrice = parseFloat(
         row.updatedRentalPrice.replace(/[$,]/g, "")
       );
+
       const isInPriceRange =
-        rentalPrice >= rentalPriceRange[0] &&
-        rentalPrice <= rentalPriceRange[1];
+        (rentalPrice >= rentalPriceRange[0] &&
+          rentalPrice <= rentalPriceRange[1]) ||
+        (rentalPriceRange[1] === 80000 && rentalPrice >= 80000);
+
       const isInUpdatedPriceRange =
-        updatedRentalPrice >= updatedRentalPriceRange[0] &&
-        updatedRentalPrice <= updatedRentalPriceRange[1];
+        (updatedRentalPrice >= updatedRentalPriceRange[0] &&
+          updatedRentalPrice <= updatedRentalPriceRange[1]) ||
+        (updatedRentalPriceRange[1] === 80000 && updatedRentalPrice >= 80000);
+
       const matchesSearch = Object.values(row).some(
         (value) =>
           typeof value === "string" &&
@@ -125,7 +132,6 @@ export default function Index() {
     <div className="m-4 space-y-4">
       <div className="w-full flex items-center">
         <Controls
-          highestPrice={highestPrice}
           setSearch={setSearch}
           setRentalPriceRange={setRentalPriceRange}
           setUpdatedRentalPriceRange={setUpdatedRentalPriceRange}
@@ -153,7 +159,7 @@ export default function Index() {
           <h3 className="text-xl font-bold flex items-center gap-2">
             <Icon icon="mdi:home" />
             <span className="text-primary-400">
-              <NumberFlow value={data.length} />
+              <NumberFlow value={sortedRows.length} />
             </span>{" "}
             total results
           </h3>
