@@ -11,6 +11,8 @@ type ControlsProps = {
   setSortDirectionPercentIncrease: (direction: "asc" | "desc" | null) => void;
   sortDirectionUpdatedPrice: "asc" | "desc" | null;
   setSortDirectionUpdatedPrice: (direction: "asc" | "desc" | null) => void;
+  sortDirectionDatePosted: "asc" | "desc" | null;
+  setSortDirectionDatePosted: (direction: "asc" | "desc" | null) => void;
 };
 
 export default function Controls({
@@ -21,6 +23,8 @@ export default function Controls({
   setSortDirectionPercentIncrease,
   sortDirectionUpdatedPrice,
   setSortDirectionUpdatedPrice,
+  sortDirectionDatePosted,
+  setSortDirectionDatePosted,
 }: ControlsProps) {
   const debouncedSetSearch = useDebouncedCallback((value: string) => {
     setSearch(value);
@@ -138,63 +142,93 @@ export default function Controls({
           aria-label="updated-price-range"
         />
       </div>
-      <div className="flex gap-2">
-        <Button
-          color={sortDirectionPercentIncrease === null ? "default" : "primary"}
-          variant="shadow"
-          onPress={() => {
-            setSortDirectionPercentIncrease(
-              sortDirectionPercentIncrease === "asc" ? "desc" : "asc"
-            );
-            setSortDirectionUpdatedPrice(null);
-          }}
-          aria-label="sort-by-percent-increase"
-          className="h-full min-h-12 w-1/2">
-          <Icon
-            width={25}
-            height={25}
-            icon={
-              sortDirectionPercentIncrease === "asc"
-                ? "mdi:arrow-up"
-                : "mdi:arrow-down"
+      <div className="flex flex-col lg:flex-row gap-4 lg:gap-2">
+        <div className="flex flex-row gap-2 items-center">
+          <Button
+            color={
+              sortDirectionPercentIncrease === null ? "default" : "primary"
             }
-          />
-          <Icon width={25} height={25} icon="mdi:percent" />
-        </Button>
-        <Button
-          color={sortDirectionUpdatedPrice === null ? "default" : "primary"}
-          variant="shadow"
-          onPress={() => {
-            setSortDirectionUpdatedPrice(
-              sortDirectionUpdatedPrice === "asc" ? "desc" : "asc"
-            );
-            setSortDirectionPercentIncrease(null);
-          }}
-          aria-label="sort-by-updated-price"
-          className="h-full min-h-12 w-1/2">
-          <Icon
-            width={25}
-            height={25}
-            icon={
-              sortDirectionUpdatedPrice === "asc"
-                ? "mdi:arrow-up"
-                : "mdi:arrow-down"
-            }
-          />
-          <Icon width={25} height={25} icon="mdi:dollar" />
-        </Button>
+            variant="shadow"
+            onPress={() => {
+              setSortDirectionPercentIncrease(
+                sortDirectionPercentIncrease === "asc" ? "desc" : "asc"
+              );
+              setSortDirectionUpdatedPrice(null);
+              setSortDirectionDatePosted(null);
+            }}
+            aria-label="sort-by-percent-increase"
+            className="h-full min-h-12 w-1/3">
+            <Icon
+              width={25}
+              height={25}
+              icon={
+                sortDirectionPercentIncrease === "asc"
+                  ? "mdi:arrow-up"
+                  : "mdi:arrow-down"
+              }
+            />
+            <Icon width={25} height={25} icon="mdi:percent" />
+          </Button>
+          <Button
+            color={sortDirectionUpdatedPrice === null ? "default" : "primary"}
+            variant="shadow"
+            onPress={() => {
+              setSortDirectionUpdatedPrice(
+                sortDirectionUpdatedPrice === "asc" ? "desc" : "asc"
+              );
+              setSortDirectionPercentIncrease(null);
+              setSortDirectionDatePosted(null);
+            }}
+            aria-label="sort-by-updated-price"
+            className="h-full min-h-12 w-1/3">
+            <Icon
+              width={25}
+              height={25}
+              icon={
+                sortDirectionUpdatedPrice === "asc"
+                  ? "mdi:arrow-up"
+                  : "mdi:arrow-down"
+              }
+            />
+            <Icon width={25} height={25} icon="mdi:dollar" />
+          </Button>
+          <Button
+            color={sortDirectionDatePosted === null ? "default" : "primary"}
+            variant="shadow"
+            onPress={() => {
+              setSortDirectionDatePosted(
+                sortDirectionDatePosted === "asc" ? "desc" : "asc"
+              );
+              setSortDirectionPercentIncrease(null);
+              setSortDirectionUpdatedPrice(null);
+            }}
+            aria-label="sort-by-date-posted"
+            className="h-full min-h-12 w-1/3">
+            <Icon
+              width={25}
+              height={25}
+              icon={
+                sortDirectionDatePosted === "asc"
+                  ? "mdi:arrow-up"
+                  : "mdi:arrow-down"
+              }
+            />
+            <Icon width={25} height={25} icon="mdi:calendar" />
+          </Button>
+        </div>
         <Button
           color="primary"
           variant="shadow"
           onPress={() => {
             setSortDirectionPercentIncrease(null);
             setSortDirectionUpdatedPrice(null);
+            setSortDirectionDatePosted("desc");
             setSearch("");
             setRentalPriceRange([0, 80000]);
             setUpdatedRentalPriceRange([0, 80000]);
           }}
           aria-label="reset-sorting"
-          className="h-full min-h-12 w-1/2">
+          className="h-full min-h-12 w-full">
           Reset
         </Button>
       </div>

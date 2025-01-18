@@ -35,6 +35,9 @@ export const loader = async () => {
 
 export default function Index() {
   const [search, setSearch] = useState<string>("");
+  const [sortDirectionDatePosted, setSortDirectionDatePosted] = useState<
+    "asc" | "desc" | null
+  >("desc");
   const [sortDirectionPercentIncrease, setSortDirectionPercentIncrease] =
     useState<"asc" | "desc" | null>(null);
   const [sortDirectionUpdatedPrice, setSortDirectionUpdatedPrice] = useState<
@@ -126,6 +129,8 @@ export default function Index() {
     <div className="m-4 space-y-4">
       <div className="w-full flex items-center">
         <Controls
+          sortDirectionDatePosted={sortDirectionDatePosted}
+          setSortDirectionDatePosted={setSortDirectionDatePosted}
           setSearch={setSearch}
           setRentalPriceRange={setRentalPriceRange}
           setUpdatedRentalPriceRange={setUpdatedRentalPriceRange}
