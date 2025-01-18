@@ -110,9 +110,6 @@ export default function Controls({
           size="sm"
           className="w-full lg:min-w-80 text-gray-400"
           defaultValue={[0, 80000]}
-          classNames={{
-            track: "bg-gray-200 dark:bg-gray-800",
-          }}
           getValue={(value) => {
             if (Array.isArray(value) && value.length === 2) {
               return `$${value[0].toLocaleString()} - $${value[1].toLocaleString()}${
