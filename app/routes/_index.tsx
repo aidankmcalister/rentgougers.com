@@ -8,6 +8,7 @@ import { useState, useMemo, useEffect } from "react";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import NumberFlow from "@number-flow/react";
 import { CircularProgress } from "@nextui-org/react";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 export const meta: MetaFunction = () => {
   return [
@@ -41,6 +42,10 @@ export default function Index() {
     [number, number]
   >([0, 50000]);
   const [loading, setLoading] = useState<boolean>(true);
+  const [hasMore, setHasMore] = useState<boolean>(true);
+  const [items, setItems] = useState<RowData[]>([]);
+  const [offset, setOffset] = useState<number>(0);
+  const itemsPerPage = 20; // Number of items to load per fetch
 
   const data = useLoaderData<RowData[]>();
 
@@ -59,13 +64,22 @@ export default function Index() {
   }, 0);
 
   useEffect(() => {
-    setLoading(true);
-    const fetchData = async () => {
-      await fetchRentData();
-      setLoading(false);
-    };
-    fetchData();
-  }, []);
+    setItems(data.slice(0, itemsPerPage)); // Load the first set of items
+    setLoading(false);
+  }, [data]);
+
+  const fetchData = async () => {
+    // Check if there are more items to load
+    if (offset + itemsPerPage >= data.length) {
+      setHasMore(false);
+      return;
+    }
+
+    // Load the next set of items
+    const newItems = data.slice(offset, offset + itemsPerPage);
+    setItems((prev) => [...prev, ...newItems]);
+    setOffset((prev) => prev + itemsPerPage); // Update the offset
+  };
 
   const filteredRows = useMemo(() => {
     return data.filter((row) => {
@@ -109,6 +123,7 @@ export default function Index() {
     }
     return rows;
   }, [filteredRows, sortDirectionPercentIncrease, sortDirectionUpdatedPrice]);
+
   return (
     <div className="m-4 space-y-4">
       <div className="w-full flex items-center">
@@ -128,20 +143,29 @@ export default function Index() {
           <CircularProgress size="lg" color="primary" className="w-10 h-10" />
         </div>
       ) : (
-        <>
+        <InfiniteScroll
+          dataLength={items.length}
+          next={fetchData}
+          hasMore={hasMore}
+          loader={<h4>Loading...</h4>}
+          endMessage={
+            <p style={{ textAlign: "center" }}>
+              <b>Yay! You have seen it all</b>
+            </p>
+          }>
           <h3 className="text-xl font-bold flex items-center gap-2">
             <Icon icon="mdi:home" />
             <span className="text-primary-400">
-              <NumberFlow value={sortedRows.length} />
+              <NumberFlow value={items.length} />
             </span>{" "}
             total results
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {sortedRows.map((row) => (
+            {items.map((row) => (
               <RowCard key={row.id} row={row} />
             ))}
           </div>
-        </>
+        </InfiniteScroll>
       )}
     </div>
   );
