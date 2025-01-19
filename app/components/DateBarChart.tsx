@@ -60,16 +60,18 @@ export default function DateBarChart({ data }: DateBarChartProps) {
   const maxListings = Math.max(...totalListingsByDay);
   const yAxisMax = Math.ceil((maxListings + 20) / 10) * 10;
 
+  const chartData = totalListingsByDay.map((data, index) => {
+    const itemDate = new Date(today);
+    itemDate.setDate(today.getDate() - index);
+    return {
+      key: format(itemDate, "PP"),
+      data,
+    };
+  });
+
   return (
     <BarChart
-      data={totalListingsByDay.map((data, index) => {
-        const itemDate = new Date(today);
-        itemDate.setDate(today.getDate() - index);
-        return {
-          key: format(itemDate, "PP"),
-          data,
-        };
-      })}
+      data={chartData.reverse()}
       yAxis={
         <LinearYAxis
           axisLine={null}
