@@ -9,14 +9,6 @@ export default function Header() {
         <h1 className="text-2xl md:text-3xl font-bold underline decoration-primary-400">
           RentGougers.com
         </h1>
-        {/* <Link
-          color="primary"
-          href="https://docs.google.com/spreadsheets/d/1RXWxLqTyWvAuq8A0PgaBuWeEn_G6qTLyTZ8lzfNEaNw/edit?gid=314416722#gid=314416722"
-          className="underline text-sm"
-          target="_blank"
-          rel="noopener noreferrer">
-          Tracking Rental Price Gouging in LA
-        </Link> */}
       </div>
       <div className="flex items-center gap-2">
         <Button

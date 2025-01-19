@@ -69,33 +69,24 @@ export default function Index() {
       dateGougedChartData: { key: string; data: number }[];
     }>();
 
+  const isInPriceRange = (price: number, range: [number, number]) =>
+    (price >= range[0] && price <= range[1]) ||
+    (range[1] === 80000 && price >= 80000);
+
   const filteredRows = useMemo(() => {
     return allRentData.filter((row) => {
-      const rentalPrice = row.rentalPrice;
-      const updatedRentalPrice = row.updatedRentalPrice;
-
+      const { rentalPrice, updatedRentalPrice } = row;
       const isValidRentalPrice = rentalPrice >= 100;
 
-      const isInPriceRange =
-        (rentalPrice >= rentalPriceRange[0] &&
-          rentalPrice <= rentalPriceRange[1]) ||
-        (rentalPriceRange[1] === 80000 && rentalPrice >= 80000);
-
-      const isInUpdatedPriceRange =
-        (updatedRentalPrice >= updatedRentalPriceRange[0] &&
-          updatedRentalPrice <= updatedRentalPriceRange[1]) ||
-        (updatedRentalPriceRange[1] === 80000 && updatedRentalPrice >= 80000);
-
-      const matchesSearch = Object.values(row).some(
-        (value) =>
-          typeof value === "string" &&
-          value.toLowerCase().includes(search.toLowerCase())
-      );
       return (
         isValidRentalPrice &&
-        isInPriceRange &&
-        isInUpdatedPriceRange &&
-        matchesSearch
+        isInPriceRange(rentalPrice, rentalPriceRange) &&
+        isInPriceRange(updatedRentalPrice, updatedRentalPriceRange) &&
+        Object.values(row).some(
+          (value) =>
+            typeof value === "string" &&
+            value.toLowerCase().includes(search.toLowerCase())
+        )
       );
     });
   }, [allRentData, search, rentalPriceRange, updatedRentalPriceRange]);
