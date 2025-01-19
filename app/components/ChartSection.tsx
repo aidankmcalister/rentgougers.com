@@ -19,10 +19,10 @@ export default function ChartSection({
 }: ChartSectionProps) {
   return (
     <div className="w-full h-fit flex flex-col lg:flex-row gap-4 items-center">
-      <IndividualChartContainer title="Date Gouged">
+      <IndividualChartContainer title="Gouged this past week">
         <DateBarChart data={dateGougedChartData} />
       </IndividualChartContainer>
-      <IndividualChartContainer title="Date Posted">
+      <IndividualChartContainer title="Posted this past week">
         <DateBarChart data={datePostedChartData} />
       </IndividualChartContainer>
     </div>
@@ -40,7 +40,7 @@ function IndividualChartContainer({
     <Card className="w-full h-96 lg:w-1/2 p-2">
       <CardBody className="flex flex-col gap-2">
         <h3 className="text-xl font-bold flex items-center gap-2">
-          <Icon icon="mdi:chart-bar" />
+          <Icon className="text-2xl text-primary" icon="mdi:bar-chart" />
           {title}
         </h3>
         <Divider />
