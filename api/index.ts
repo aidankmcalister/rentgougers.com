@@ -35,33 +35,37 @@ export const fetchRentData = async (): Promise<PropertiesRecord[]> => {
   })) as PropertiesRecord[];
 };
 
-export const getPriceChartData = async ({
+export const getDatePostedOrGougedChartData = async ({
+  type,
   startDate,
   endDate,
 }: {
+  type: "gouged" | "posted";
   startDate?: string;
   endDate?: string;
-} = {}) => {
+}) => {
   const records = await fetchRentData();
 
   let filteredRecords = records;
 
   if (startDate && endDate) {
-    filteredRecords = records.filter(
-      (record: PropertiesRecord) =>
-        record.datePosted &&
-        record.datePosted >= startDate &&
-        record.datePosted <= endDate
-    );
+    filteredRecords = records.filter((record: PropertiesRecord) => {
+      const dateField =
+        type === "posted" ? record.datePosted : record.priceIncreaseDate;
+      return dateField && dateField >= startDate && dateField <= endDate;
+    });
   }
 
   filteredRecords = filteredRecords.filter(
     (record) =>
-      record.rentalPrice !== undefined && record.datePosted !== undefined
+      record.rentalPrice !== undefined &&
+      (type === "posted"
+        ? record.datePosted !== undefined
+        : record.priceIncreaseDate !== undefined)
   );
 
   const chartData = filteredRecords.map((record: PropertiesRecord) => ({
-    key: record.datePosted,
+    key: type === "posted" ? record.datePosted : record.priceIncreaseDate,
     data: record.rentalPrice,
   }));
   return chartData;

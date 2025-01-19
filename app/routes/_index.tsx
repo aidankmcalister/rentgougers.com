@@ -1,6 +1,6 @@
 import type { MetaFunction } from "@remix-run/node";
 import { json, useLoaderData } from "@remix-run/react";
-import { fetchRentData, getPriceChartData } from "api";
+import { fetchRentData, getDatePostedOrGougedChartData } from "api";
 import { RowData } from "~/types/RowData";
 import RowCard from "~/components/RowCard";
 import Controls from "~/components/Controls";
@@ -9,7 +9,7 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import NumberFlow from "@number-flow/react";
 import { CircularProgress } from "@nextui-org/react";
 import InfiniteScroll from "react-infinite-scroll-component";
-import PriceAreaChart from "~/components/PriceAreaChart";
+import ChartSection from "~/components/ChartSection";
 
 export const meta: MetaFunction = () => {
   return [
@@ -27,8 +27,13 @@ export const meta: MetaFunction = () => {
 export const loader = async () => {
   try {
     const allRentData = await fetchRentData();
-    const priceChartData = await getPriceChartData();
-    return json({ allRentData, priceChartData });
+    const datePostedChartData = await getDatePostedOrGougedChartData({
+      type: "posted",
+    });
+    const dateGougedChartData = await getDatePostedOrGougedChartData({
+      type: "gouged",
+    });
+    return json({ allRentData, datePostedChartData, dateGougedChartData });
   } catch (error) {
     console.error("Error loading rent data:", error);
     throw new Response("Error loading data", { status: 500 });
@@ -57,10 +62,12 @@ export default function Index() {
   const [offset, setOffset] = useState<number>(0);
   const itemsPerPage = 20;
 
-  const { allRentData, priceChartData } = useLoaderData<{
-    allRentData: RowData[];
-    priceChartData: { key: string; data: number }[];
-  }>();
+  const { allRentData, datePostedChartData, dateGougedChartData } =
+    useLoaderData<{
+      allRentData: RowData[];
+      datePostedChartData: { key: string; data: number }[];
+      dateGougedChartData: { key: string; data: number }[];
+    }>();
 
   const filteredRows = useMemo(() => {
     return allRentData.filter((row) => {
@@ -145,14 +152,10 @@ export default function Index() {
 
   return (
     <div className="m-4 space-y-4">
-      <div className="w-full h-fit flex flex-col lg:flex-row gap-4 items-center">
-        <div className="w-full h-96 lg:w-1/2 border border-gray-500 rounded-lg p-4 flex items-center">
-          <PriceAreaChart data={priceChartData} />
-        </div>
-        <div className="w-full h-96 lg:w-1/2 border border-gray-500 rounded-lg p-4 flex items-center">
-          <PriceAreaChart data={priceChartData} />
-        </div>
-      </div>
+      <ChartSection
+        dateGougedChartData={dateGougedChartData}
+        datePostedChartData={datePostedChartData}
+      />
       <div className="w-full flex items-center">
         <Controls
           sortDirectionDatePosted={sortDirectionDatePosted}
