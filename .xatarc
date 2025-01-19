@@ -1,0 +1,6 @@
+{
+  "databaseURL": "https://Aidan-McAlister-s-workspace-7hg6kb.us-east-1.xata.sh/db/rentgougers",
+  "codegen": {
+    "output": "app/utils/xata.ts"
+  }
+}

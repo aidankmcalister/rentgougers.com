@@ -1,0 +1,24 @@
+{
+  "done": true,
+  "migration": {
+    "name": "mig_cu67922m1u3p8dmstuo0",
+    "operations": [
+      {
+        "add_column": {
+          "table": "Properties",
+          "column": {
+            "name": "address",
+            "type": "text",
+            "comment": "",
+            "nullable": true
+          }
+        }
+      }
+    ]
+  },
+  "migrationType": "pgroll",
+  "name": "mig_cu67922m1u3p8dmstuo0",
+  "parent": "mig_cu678sim1u3p8dmstun0",
+  "schema": "public",
+  "startedAt": "2025-01-19T03:42:01.178424Z"
+}

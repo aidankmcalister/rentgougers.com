@@ -1,0 +1,24 @@
+{
+  "done": true,
+  "migration": {
+    "name": "mig_cu698vqm1u3p8dmstvhg",
+    "operations": [
+      {
+        "add_column": {
+          "table": "Properties",
+          "column": {
+            "name": "parcelId",
+            "type": "text",
+            "comment": "",
+            "nullable": true
+          }
+        }
+      }
+    ]
+  },
+  "migrationType": "pgroll",
+  "name": "mig_cu698vqm1u3p8dmstvhg",
+  "parent": "mig_cu698sim1u3p8dmstvgg",
+  "schema": "public",
+  "startedAt": "2025-01-19T05:58:24.871837Z"
+}

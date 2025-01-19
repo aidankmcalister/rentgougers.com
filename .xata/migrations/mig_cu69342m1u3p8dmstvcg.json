@@ -1,0 +1,165 @@
+{
+  "done": true,
+  "migration": {
+    "name": "mig_cu69342m1u3p8dmstvcg",
+    "operations": [
+      {
+        "create_table": {
+          "name": "Properties",
+          "columns": [
+            {
+              "name": "additionalInfo",
+              "type": "text",
+              "comment": "{}",
+              "nullable": true
+            },
+            {
+              "name": "address",
+              "type": "text",
+              "comment": "{}",
+              "nullable": true
+            },
+            {
+              "name": "city",
+              "type": "text",
+              "comment": "{}",
+              "nullable": true
+            },
+            {
+              "name": "datePosted",
+              "type": "text",
+              "comment": "{}",
+              "nullable": true
+            },
+            {
+              "name": "googleMapLink",
+              "type": "text",
+              "comment": "{}",
+              "nullable": true
+            },
+            {
+              "name": "googleSheetLink",
+              "type": "text",
+              "comment": "{}",
+              "nullable": true
+            },
+            {
+              "name": "housePossiblyRebuilt",
+              "type": "boolean",
+              "comment": "{}",
+              "nullable": true
+            },
+            {
+              "name": "listingSite",
+              "type": "text",
+              "comment": "{}",
+              "nullable": true
+            },
+            {
+              "name": "listingUrl",
+              "type": "text",
+              "comment": "{}",
+              "nullable": true
+            },
+            {
+              "name": "parcelId",
+              "type": "real",
+              "comment": "{}",
+              "nullable": true
+            },
+            {
+              "name": "percentIncrease",
+              "type": "integer",
+              "comment": "{}",
+              "nullable": true
+            },
+            {
+              "name": "priceIncreaseDate",
+              "type": "text",
+              "comment": "{}",
+              "nullable": true
+            },
+            {
+              "name": "priceOriginalDate",
+              "type": "text",
+              "comment": "{}",
+              "nullable": true
+            },
+            {
+              "name": "rentalPrice",
+              "type": "real",
+              "comment": "{}",
+              "nullable": true
+            },
+            {
+              "name": "sourceGrabs",
+              "type": "text",
+              "comment": "{}",
+              "nullable": true
+            },
+            {
+              "name": "state",
+              "type": "text",
+              "comment": "{}",
+              "nullable": true
+            },
+            {
+              "name": "updatedRentalPrice",
+              "type": "real",
+              "comment": "{}",
+              "nullable": true
+            },
+            {
+              "name": "zip",
+              "type": "integer",
+              "comment": "{}",
+              "nullable": true
+            },
+            {
+              "name": "xata_createdat",
+              "type": "timestamptz",
+              "default": "now()"
+            },
+            {
+              "name": "xata_updatedat",
+              "type": "timestamptz",
+              "default": "now()"
+            },
+            {
+              "name": "xata_id",
+              "type": "text",
+              "check": {
+                "name": "Properties_xata_id_length_xata_id",
+                "constraint": "length(\"xata_id\") < 256"
+              },
+              "unique": true,
+              "default": "'rec_' || xata_private.xid()"
+            },
+            {
+              "name": "xata_version",
+              "type": "integer",
+              "default": "0"
+            }
+          ]
+        }
+      },
+      {
+        "sql": {
+          "up": "ALTER TABLE \"Properties\" REPLICA IDENTITY FULL",
+          "onComplete": true
+        }
+      },
+      {
+        "sql": {
+          "up": "CREATE TRIGGER xata_maintain_metadata_trigger_pgroll\n  BEFORE INSERT OR UPDATE\n  ON \"Properties\"\n  FOR EACH ROW\n  EXECUTE FUNCTION xata_private.maintain_metadata_trigger_pgroll()",
+          "onComplete": true
+        }
+      }
+    ]
+  },
+  "migrationType": "pgroll",
+  "name": "mig_cu69342m1u3p8dmstvcg",
+  "parent": "mig_cu692j3isf7cfs2ln070",
+  "schema": "public",
+  "startedAt": "2025-01-19T05:45:52.951702Z"
+}

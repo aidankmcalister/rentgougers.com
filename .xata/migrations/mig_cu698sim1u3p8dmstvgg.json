@@ -1,0 +1,19 @@
+{
+  "done": true,
+  "migration": {
+    "name": "mig_cu698sim1u3p8dmstvgg",
+    "operations": [
+      {
+        "drop_column": {
+          "table": "Properties",
+          "column": "parcelId"
+        }
+      }
+    ]
+  },
+  "migrationType": "pgroll",
+  "name": "mig_cu698sim1u3p8dmstvgg",
+  "parent": "mig_cu698j0bn5466o07l4u0",
+  "schema": "public",
+  "startedAt": "2025-01-19T05:58:11.730646Z"
+}

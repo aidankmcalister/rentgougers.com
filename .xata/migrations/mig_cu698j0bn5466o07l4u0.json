@@ -1,0 +1,24 @@
+{
+  "done": true,
+  "migration": {
+    "name": "mig_cu698j0bn5466o07l4u0",
+    "operations": [
+      {
+        "add_column": {
+          "table": "Properties",
+          "column": {
+            "name": "sourceGrabs",
+            "type": "text[]",
+            "comment": "",
+            "nullable": true
+          }
+        }
+      }
+    ]
+  },
+  "migrationType": "pgroll",
+  "name": "mig_cu698j0bn5466o07l4u0",
+  "parent": "mig_cu698gim1u3p8dmstvf0",
+  "schema": "public",
+  "startedAt": "2025-01-19T05:57:33.366988Z"
+}

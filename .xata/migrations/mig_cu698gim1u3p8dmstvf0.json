@@ -1,0 +1,19 @@
+{
+  "done": true,
+  "migration": {
+    "name": "mig_cu698gim1u3p8dmstvf0",
+    "operations": [
+      {
+        "drop_column": {
+          "table": "Properties",
+          "column": "sourceGrabs"
+        }
+      }
+    ]
+  },
+  "migrationType": "pgroll",
+  "name": "mig_cu698gim1u3p8dmstvf0",
+  "parent": "mig_cu694sobn5466o07l4rg",
+  "schema": "public",
+  "startedAt": "2025-01-19T05:57:23.266906Z"
+}
