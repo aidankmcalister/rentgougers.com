@@ -54,7 +54,7 @@ export default function Header() {
         <h1 className="text-2xl md:text-3xl font-bold underline decoration-primary-400">
           RentGougers.com
         </h1>
-        <p className="text-sm font-thin">
+        <p className="text-sm font-thin text-primary-400">
           Next update:{" "}
           <span className="font-semibold">{formatMsToHMS(timeLeft)}</span>
         </p>
