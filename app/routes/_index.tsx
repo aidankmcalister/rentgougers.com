@@ -1,6 +1,6 @@
 import type { MetaFunction } from "@remix-run/node";
 import { json, useLoaderData } from "@remix-run/react";
-import { fetchRentData } from "api";
+import { fetchRentData, getPriceChartData } from "api";
 import { RowData } from "~/types/RowData";
 import RowCard from "~/components/RowCard";
 import Controls from "~/components/Controls";
@@ -9,6 +9,7 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import NumberFlow from "@number-flow/react";
 import { CircularProgress } from "@nextui-org/react";
 import InfiniteScroll from "react-infinite-scroll-component";
+import PriceAreaChart from "~/components/PriceAreaChart";
 
 export const meta: MetaFunction = () => {
   return [
@@ -25,8 +26,9 @@ export const meta: MetaFunction = () => {
 
 export const loader = async () => {
   try {
-    const data = await fetchRentData();
-    return json(data);
+    const allRentData = await fetchRentData();
+    const priceChartData = await getPriceChartData();
+    return json({ allRentData, priceChartData });
   } catch (error) {
     console.error("Error loading rent data:", error);
     throw new Response("Error loading data", { status: 500 });
@@ -55,10 +57,13 @@ export default function Index() {
   const [offset, setOffset] = useState<number>(0);
   const itemsPerPage = 20;
 
-  const data = useLoaderData<RowData[]>();
+  const { allRentData, priceChartData } = useLoaderData<{
+    allRentData: RowData[];
+    priceChartData: { key: string; data: number }[];
+  }>();
 
   const filteredRows = useMemo(() => {
-    return data.filter((row) => {
+    return allRentData.filter((row) => {
       const rentalPrice = row.rentalPrice;
       const updatedRentalPrice = row.updatedRentalPrice;
 
@@ -86,7 +91,7 @@ export default function Index() {
         matchesSearch
       );
     });
-  }, [data, search, rentalPriceRange, updatedRentalPriceRange]);
+  }, [allRentData, search, rentalPriceRange, updatedRentalPriceRange]);
 
   const sortedRows = useMemo(() => {
     const rows = [...filteredRows];
@@ -140,6 +145,14 @@ export default function Index() {
 
   return (
     <div className="m-4 space-y-4">
+      <div className="w-full h-fit flex flex-col lg:flex-row gap-4 items-center">
+        <div className="w-full h-96 lg:w-1/2 border border-gray-500 rounded-lg p-4 flex items-center">
+          <PriceAreaChart data={priceChartData} />
+        </div>
+        <div className="w-full h-96 lg:w-1/2 border border-gray-500 rounded-lg p-4 flex items-center">
+          <PriceAreaChart data={priceChartData} />
+        </div>
+      </div>
       <div className="w-full flex items-center">
         <Controls
           sortDirectionDatePosted={sortDirectionDatePosted}
