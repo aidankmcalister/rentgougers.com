@@ -1,4 +1,5 @@
 import { format } from "date-fns";
+import { useState, useEffect } from "react";
 import {
   LinearXAxisTickSeries,
   LinearXAxis,
@@ -21,12 +22,26 @@ type DateBarChartProps = {
 };
 
 export default function DateBarChart({ data }: DateBarChartProps) {
-  let primary = "red";
-  if (typeof window !== "undefined") {
-    primary = window.document.documentElement.classList.contains("dark")
-      ? "#803ab3"
-      : "#e63946";
-  }
+  const [primary, setPrimary] = useState("red");
+
+  useEffect(() => {
+    const updatePrimaryColor = () => {
+      setPrimary(
+        window.document.documentElement.classList.contains("dark")
+          ? "#803ab3"
+          : "#e63946"
+      );
+    };
+
+    updatePrimaryColor();
+
+    const observer = new MutationObserver(updatePrimaryColor);
+    observer.observe(document.documentElement, { attributes: true });
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
 
   const today = new Date();
 
