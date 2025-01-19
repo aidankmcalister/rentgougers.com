@@ -16,6 +16,21 @@ import Disclaimer from "./components/Disclaimer";
 import { useState } from "react";
 import { Analytics } from "@vercel/analytics/remix";
 
+function setInitialTheme() {
+  return `
+    (function() {
+      try {
+        let theme = localStorage.getItem('theme');
+        if (theme === 'dark') {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      } catch (e) {}
+    })();
+  `;
+}
+
 export const links: LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
   {
@@ -42,6 +57,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
           href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏠</text></svg>"
         />
         <Meta />
+        <script dangerouslySetInnerHTML={{ __html: setInitialTheme() }} />
         <Links />
       </head>
       <body>

@@ -1,6 +1,6 @@
 import type { MetaFunction } from "@remix-run/node";
 import { json, useLoaderData } from "@remix-run/react";
-import { fetchRentData } from "api";
+import { fetchRentData, getDatePostedOrGougedChartData } from "api";
 import { RowData } from "~/types/RowData";
 import RowCard from "~/components/RowCard";
 import Controls from "~/components/Controls";
@@ -9,6 +9,7 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import NumberFlow from "@number-flow/react";
 import { CircularProgress } from "@nextui-org/react";
 import InfiniteScroll from "react-infinite-scroll-component";
+import ChartSection from "~/components/ChartSection";
 
 export const meta: MetaFunction = () => {
   return [
@@ -25,8 +26,14 @@ export const meta: MetaFunction = () => {
 
 export const loader = async () => {
   try {
-    const data = await fetchRentData();
-    return json(data);
+    const allRentData = await fetchRentData();
+    const datePostedChartData = await getDatePostedOrGougedChartData({
+      type: "posted",
+    });
+    const dateGougedChartData = await getDatePostedOrGougedChartData({
+      type: "gouged",
+    });
+    return json({ allRentData, datePostedChartData, dateGougedChartData });
   } catch (error) {
     console.error("Error loading rent data:", error);
     throw new Response("Error loading data", { status: 500 });
@@ -55,10 +62,15 @@ export default function Index() {
   const [offset, setOffset] = useState<number>(0);
   const itemsPerPage = 20;
 
-  const data = useLoaderData<RowData[]>();
+  const { allRentData, datePostedChartData, dateGougedChartData } =
+    useLoaderData<{
+      allRentData: RowData[];
+      datePostedChartData: { key: string; data: number }[];
+      dateGougedChartData: { key: string; data: number }[];
+    }>();
 
   const filteredRows = useMemo(() => {
-    return data.filter((row) => {
+    return allRentData.filter((row) => {
       const rentalPrice = row.rentalPrice;
       const updatedRentalPrice = row.updatedRentalPrice;
 
@@ -86,7 +98,7 @@ export default function Index() {
         matchesSearch
       );
     });
-  }, [data, search, rentalPriceRange, updatedRentalPriceRange]);
+  }, [allRentData, search, rentalPriceRange, updatedRentalPriceRange]);
 
   const sortedRows = useMemo(() => {
     const rows = [...filteredRows];
@@ -140,6 +152,10 @@ export default function Index() {
 
   return (
     <div className="m-4 space-y-4">
+      <ChartSection
+        dateGougedChartData={dateGougedChartData}
+        datePostedChartData={datePostedChartData}
+      />
       <div className="w-full flex items-center">
         <Controls
           sortDirectionDatePosted={sortDirectionDatePosted}
