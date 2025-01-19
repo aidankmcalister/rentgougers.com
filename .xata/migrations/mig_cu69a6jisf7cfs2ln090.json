@@ -1,0 +1,24 @@
+{
+  "done": true,
+  "migration": {
+    "name": "mig_cu69a6jisf7cfs2ln090",
+    "operations": [
+      {
+        "add_column": {
+          "table": "Properties",
+          "column": {
+            "name": "zip",
+            "type": "text",
+            "comment": "",
+            "nullable": true
+          }
+        }
+      }
+    ]
+  },
+  "migrationType": "pgroll",
+  "name": "mig_cu69a6jisf7cfs2ln090",
+  "parent": "mig_cu699p2m1u3p8dmstvig",
+  "schema": "public",
+  "startedAt": "2025-01-19T06:00:58.612348Z"
+}

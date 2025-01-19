@@ -1,0 +1,24 @@
+{
+  "done": true,
+  "migration": {
+    "name": "mig_cu69f3qm1u3p8dmstvm0",
+    "operations": [
+      {
+        "add_column": {
+          "table": "Properties",
+          "column": {
+            "name": "google_sheet_id",
+            "type": "text",
+            "comment": "",
+            "nullable": true
+          }
+        }
+      }
+    ]
+  },
+  "migrationType": "pgroll",
+  "name": "mig_cu69f3qm1u3p8dmstvm0",
+  "parent": "mig_cu69a6jisf7cfs2ln090",
+  "schema": "public",
+  "startedAt": "2025-01-19T06:11:28.906558Z"
+}

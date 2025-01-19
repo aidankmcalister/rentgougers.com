@@ -1,0 +1,24 @@
+{
+  "done": true,
+  "migration": {
+    "name": "mig_cu678sim1u3p8dmstun0",
+    "operations": [
+      {
+        "add_column": {
+          "table": "Properties",
+          "column": {
+            "name": "datePosted",
+            "type": "timestamptz",
+            "comment": "",
+            "nullable": true
+          }
+        }
+      }
+    ]
+  },
+  "migrationType": "pgroll",
+  "name": "mig_cu678sim1u3p8dmstun0",
+  "parent": "mig_cu60o00bn5466o07l370",
+  "schema": "public",
+  "startedAt": "2025-01-19T03:41:38.935479Z"
+}
