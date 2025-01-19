@@ -100,8 +100,9 @@ export default function DateBarChart({ data }: DateBarChartProps) {
         <BarSeries
           bar={
             <Bar
+              key={primary}
               label={<BarLabel fill="" />}
-              glow={{ blur: 20, opacity: 0.5 }}
+              glow={{ blur: 20, opacity: 0.5, color: primary }}
             />
           }
           colorScheme={[primary]}
