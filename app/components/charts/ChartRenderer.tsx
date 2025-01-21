@@ -57,9 +57,11 @@ export default function ChartRenderer({ data, chartType }: ChartRendererProps) {
       return {
         key: format(itemDate, "PP"),
         data,
+        date: itemDate,
       };
     })
-    .reverse();
+    .sort((a, b) => a.date.getTime() - b.date.getTime())
+    .map(({ key, data }) => ({ key, data }));
 
   return chartType === "bar" ? (
     <DateBarChart chartData={chartData} primary={primary} yAxisMax={yAxisMax} />
