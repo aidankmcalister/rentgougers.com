@@ -1,5 +1,5 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
-import { Button, Card, Link } from "@nextui-org/react";
+import { Button, Card, Link } from "@heroui/react";
 
 export default function Disclaimer({
   setShowDisclaimer,

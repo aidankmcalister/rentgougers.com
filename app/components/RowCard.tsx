@@ -9,7 +9,7 @@ import {
   Accordion,
   AccordionItem,
   Button,
-} from "@nextui-org/react";
+} from "@heroui/react";
 import { formatPercent, formatPrice } from "~/utils/formats";
 
 export default function RowCard({ row }: { row: RowData }) {

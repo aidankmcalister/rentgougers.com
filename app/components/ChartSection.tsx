@@ -1,4 +1,4 @@
-import { Button, Card, CardBody, Divider } from "@nextui-org/react";
+import { Button, Card, CardBody, Divider } from "@heroui/react";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import ChartRenderer from "./charts/ChartRenderer";
 import { useState } from "react";
