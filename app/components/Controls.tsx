@@ -1,5 +1,5 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
-import { Button, Card, Input, Slider } from "@nextui-org/react";
+import { Button, Card, Input, Slider } from "@heroui/react";
 import { useCallback } from "react";
 import { useDebouncedCallback } from "use-debounce";
 

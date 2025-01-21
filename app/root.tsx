@@ -6,7 +6,7 @@ import {
   ScrollRestoration,
 } from "@remix-run/react";
 import type { LinksFunction } from "@remix-run/node";
-import { NextUIProvider } from "@nextui-org/react";
+import { HeroUIProvider } from "@heroui/react";
 import "./tailwind.css";
 import "@fontsource/poppins/300.css";
 import "@fontsource/poppins/400.css";
@@ -61,7 +61,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        <NextUIProvider>
+        <HeroUIProvider>
           <div className="min-h-screen">
             <Header />
             {children}
@@ -72,7 +72,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
           <Analytics />
           <ScrollRestoration />
           <Scripts />
-        </NextUIProvider>
+        </HeroUIProvider>
       </body>
     </html>
   );
